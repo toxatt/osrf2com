@@ -1,0 +1,3530 @@
+///////////////////////////////////////////////////////////////////////////////
+//                                                                            /
+//                                                      19/Jul/2010  09:20:03 /
+// IAR C/C++ Compiler V5.30.0.20166/W32, Evaluation Version  for Atmel AVR    /
+// Copyright 1996-2009 IAR Systems AB.                                        /
+//                                                                            /
+//    Source file  =  D:\a-erezeev\AVRProjects\OSdecoder2\main.c              /
+//    Command line =  --string_literals_in_flash                              /
+//                    D:\a-erezeev\AVRProjects\OSdecoder2\main.c --cpu=m8     /
+//                    -ms -o D:\a-erezeev\AVRProjects\OSdecoder2\Debug\Obj\   /
+//                    -lC D:\a-erezeev\AVRProjects\OSdecoder2\Debug\List\     /
+//                    -lA D:\a-erezeev\AVRProjects\OSdecoder2\Debug\List\     /
+//                    --initializers_in_flash -s9 --no_code_motion --debug    /
+//                    -DENABLE_BIT_DEFINITIONS -e -I "C:\Program Files\IAR    /
+//                    Systems\Embedded Workbench Evaluation 5.3\avr\INC\" -I  /
+//                    "C:\Program Files\IAR Systems\Embedded Workbench        /
+//                    Evaluation 5.3\avr\INC\CLIB\" --eeprom_size 512         /
+//    List file    =  D:\a-erezeev\AVRProjects\OSdecoder2\Debug\List\main.s90 /
+//                                                                            /
+//                                                                            /
+///////////////////////////////////////////////////////////////////////////////
+
+        NAME main
+
+        RTMODEL "__64bit_doubles", "disabled"
+        RTMODEL "__cpu", "1"
+        RTMODEL "__cpu_name", "ATmega8"
+        RTMODEL "__enhanced_core", "enabled"
+        RTMODEL "__has_elpm", "false"
+        RTMODEL "__memory_model", "2"
+        RTMODEL "__rt_version", "3"
+
+        RSEG CSTACK:DATA:NOROOT(0)
+        RSEG RSTACK:DATA:NOROOT(0)
+
+        EXTERN ?C_SHL_L01
+        EXTERN ?Register_R4_is_cg_reg
+        EXTERN ?Register_R5_is_cg_reg
+        EXTERN ?need_segment_init
+
+        PUBWEAK `?<Segment init: NEAR_Z>`
+        PUBWEAK `??ISR_TIMER1_CAPT??INTVEC 10`
+        PUBWEAK `??TIMER1_COMPA??INTVEC 12`
+        PUBLIC ICP_VARS
+        PUBLIC ISR_TIMER1_CAPT
+        FUNCTION ISR_TIMER1_CAPT,021233H
+        ARGFRAME CSTACK, 0, STACK
+        LOCFRAME CSTACK, 24, STACK
+        LOCFRAME RSTACK, 4, STACK
+        PUBLIC OS1_VARS
+        PUBLIC OS2_VARS
+        PUBLIC OS3_VARS
+        PUBLIC STATE_DECODER
+        PUBLIC Stream
+        PUBLIC TIMER1_COMPA
+        FUNCTION TIMER1_COMPA,021233H
+        ARGFRAME CSTACK, 0, STACK
+        LOCFRAME CSTACK, 15, STACK
+        LOCFRAME RSTACK, 2, STACK
+        PUBWEAK _A_DDRD
+        PUBWEAK _A_ICR1
+        PUBWEAK _A_OCR1A
+        PUBWEAK _A_PORTD
+        PUBWEAK _A_TCCR1B
+        PUBWEAK _A_TCNT1
+        PUBWEAK _A_TIFR
+        PUBWEAK _A_TIMSK
+        PUBWEAK _A_UBRRH
+        PUBWEAK _A_UBRRL
+        PUBWEAK _A_UCSRA
+        PUBWEAK _A_UCSRB
+        PUBWEAK _A_UDR
+        PUBWEAK __?EEARH
+        PUBWEAK __?EEARL
+        PUBWEAK __?EECR
+        PUBWEAK __?EEDR
+        PUBLIC debug_buff
+        PUBLIC debug_index
+        PUBLIC i2a
+        FUNCTION i2a,080203H
+        ARGFRAME RSTACK, 0, STACK
+        LOCFRAME RSTACK, 2, STACK
+        PUBLIC i2hex
+        FUNCTION i2hex,0203H
+        ARGFRAME RSTACK, 0, STACK
+        LOCFRAME RSTACK, 2, STACK
+        PUBLIC main
+        FUNCTION main,021a03H
+        ARGFRAME CSTACK, 0, STACK
+        LOCFRAME RSTACK, 2, STACK
+        PUBLIC print_decnum
+        FUNCTION print_decnum,021203H
+        ARGFRAME CSTACK, 0, STACK
+        LOCFRAME CSTACK, 10, STACK
+        LOCFRAME RSTACK, 2, STACK
+        PUBLIC print_fstr
+        FUNCTION print_fstr,0203H
+        ARGFRAME RSTACK, 0, STACK
+        LOCFRAME RSTACK, 2, STACK
+        PUBLIC print_hexnum
+        FUNCTION print_hexnum,021203H
+        ARGFRAME CSTACK, 0, STACK
+        LOCFRAME CSTACK, 10, STACK
+        LOCFRAME RSTACK, 2, STACK
+        PUBLIC print_stream
+        FUNCTION print_stream,021203H
+        ARGFRAME RSTACK, 0, STACK
+        LOCFRAME CSTACK, 8, STACK
+        LOCFRAME RSTACK, 2, STACK
+        PUBLIC uart_init
+        FUNCTION uart_init,0203H
+        ARGFRAME RSTACK, 0, STACK
+        LOCFRAME RSTACK, 2, STACK
+        
+        CFI Names cfiNames0
+        CFI StackFrame CFA_Y Y DATA
+        CFI StackFrame CFA_SP SP DATA
+        CFI VirtualResource ?RetPad:1, ?RetHigh:8, ?RetLow:8, ?Ret:17
+        CFI Resource R0:8, R1:8, R2:8, R3:8, R4:8, R5:8, R6:8, R7:8, R8:8, R9:8
+        CFI Resource R10:8, R11:8, R12:8, R13:8, R14:8, R15:8, R16:8, R17:8
+        CFI Resource R18:8, R19:8, R20:8, R21:8, R22:8, R23:8, R24:8, R25:8
+        CFI Resource R26:8, R27:8, R28:8, R29:8, R30:8, R31:8
+        CFI Resource ?RetHighByteMask:8, SP:16, SPH:8, SPL:8, Y:16
+        CFI ResourceParts ?Ret ?RetHigh, ?RetLow, ?RetPad
+        CFI ResourceParts SP SPH, SPL
+        CFI ResourceParts Y R29, R28
+        CFI EndNames cfiNames0
+        
+        CFI Common cfiCommon0 Using cfiNames0
+        CFI CodeAlign 1
+        CFI DataAlign 1
+        CFI ReturnAddress ?Ret CODE
+        CFI CFA_Y Y+0
+        CFI CFA_SP SP+2
+        CFI ?RetPad 0
+        CFI ?RetHigh and(load(1, DATA, sub(CFA_SP, 1)), ?RetHighByteMask)
+        CFI ?RetLow Frame(CFA_SP, 0)
+        CFI ?Ret Concat
+        CFI R0 Undefined
+        CFI R1 Undefined
+        CFI R2 Undefined
+        CFI R3 Undefined
+        CFI R4 SameValue
+        CFI R5 SameValue
+        CFI R6 SameValue
+        CFI R7 SameValue
+        CFI R8 SameValue
+        CFI R9 SameValue
+        CFI R10 SameValue
+        CFI R11 SameValue
+        CFI R12 SameValue
+        CFI R13 SameValue
+        CFI R14 SameValue
+        CFI R15 SameValue
+        CFI R16 Undefined
+        CFI R17 Undefined
+        CFI R18 Undefined
+        CFI R19 Undefined
+        CFI R20 Undefined
+        CFI R21 Undefined
+        CFI R22 Undefined
+        CFI R23 Undefined
+        CFI R24 SameValue
+        CFI R25 SameValue
+        CFI R26 SameValue
+        CFI R27 SameValue
+        CFI R28 Undefined
+        CFI R29 Undefined
+        CFI R30 Undefined
+        CFI R31 Undefined
+        CFI ?RetHighByteMask SameValue
+        CFI SPH Undefined
+        CFI SPL Undefined
+        CFI EndCommon cfiCommon0
+        
+        
+        CFI Common cfiCommon1 Using cfiNames0
+        CFI CodeAlign 1
+        CFI DataAlign 1
+        CFI ReturnAddress ?Ret CODE
+        CFI CFA_Y Y+0
+        CFI CFA_SP SP+2
+        CFI ?RetPad 0
+        CFI ?RetHigh and(load(1, DATA, sub(CFA_SP, 1)), ?RetHighByteMask)
+        CFI ?RetLow Frame(CFA_SP, 0)
+        CFI ?Ret Concat
+        CFI R0 SameValue
+        CFI R1 SameValue
+        CFI R2 SameValue
+        CFI R3 SameValue
+        CFI R4 SameValue
+        CFI R5 SameValue
+        CFI R6 SameValue
+        CFI R7 SameValue
+        CFI R8 SameValue
+        CFI R9 SameValue
+        CFI R10 SameValue
+        CFI R11 SameValue
+        CFI R12 SameValue
+        CFI R13 SameValue
+        CFI R14 SameValue
+        CFI R15 SameValue
+        CFI R16 SameValue
+        CFI R17 SameValue
+        CFI R18 SameValue
+        CFI R19 SameValue
+        CFI R20 SameValue
+        CFI R21 SameValue
+        CFI R22 SameValue
+        CFI R23 SameValue
+        CFI R24 SameValue
+        CFI R25 SameValue
+        CFI R26 SameValue
+        CFI R27 SameValue
+        CFI R28 Undefined
+        CFI R29 Undefined
+        CFI R30 SameValue
+        CFI R31 SameValue
+        CFI ?RetHighByteMask SameValue
+        CFI SPH Undefined
+        CFI SPL Undefined
+        CFI EndCommon cfiCommon1
+        
+ISR_TIMER1_CAPT     SYMBOL "ISR_TIMER1_CAPT"
+`??ISR_TIMER1_CAPT??INTVEC 10` SYMBOL "??INTVEC 10", ISR_TIMER1_CAPT
+TIMER1_COMPA        SYMBOL "TIMER1_COMPA"
+`??TIMER1_COMPA??INTVEC 12` SYMBOL "??INTVEC 12", TIMER1_COMPA
+
+// D:\a-erezeev\AVRProjects\OSdecoder2\main.c
+//    1 
+//    2 /********** Oregon Scientific RF protocol decoder *********
+//    3 ** v. 1.00a
+//    4 ** by Alexander Yerezeyev 
+//    5 ** http://alyer.frihost.net
+//    6 ** compiled with IAR 5.30 for target MCU Atmega8 @ 16MHz
+//    7 *
+//    8 * Program reads and decode low-level RF data from 
+//    9 * Oregon Scientific v1.0, v2.1 and v3.0 sensors and put the messages to COM port
+//   10 * for high-level software (weather station, datalogers, etc)
+//   11 * Creation Date: 19/Jun/2010
+//   12 * Copyright: (C)2010 by Alexander Yerezeyev
+//   13 * License: GNU GPL v3 (see http://www.gnu.org/licenses/gpl-3.0.txt)
+//   14 **********************************************************/
+//   15 
+//   16 #include <ioavr.h>
+
+        ASEGN ABSOLUTE:DATA:NOROOT,029H
+// <__C20> volatile __io _A_UBRRL
+_A_UBRRL:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:NOROOT,02aH
+// <__C22> volatile __io _A_UCSRB
+_A_UCSRB:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:NOROOT,02bH
+// <__C24> volatile __io _A_UCSRA
+_A_UCSRA:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:NOROOT,02cH
+// <__C26> volatile __io _A_UDR
+_A_UDR:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:NOROOT,031H
+// <__C36> volatile __io _A_DDRD
+_A_DDRD:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:NOROOT,032H
+// <__C38> volatile __io _A_PORTD
+_A_PORTD:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:NOROOT,040H
+// <__C61> volatile __io _A_UBRRH
+_A_UBRRH:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:NOROOT,046H
+// <__C75> volatile __io _A_ICR1
+_A_ICR1:
+        DS8 2
+
+        ASEGN ABSOLUTE:DATA:NOROOT,04aH
+// <__C83> volatile __io _A_OCR1A
+_A_OCR1A:
+        DS8 2
+
+        ASEGN ABSOLUTE:DATA:NOROOT,04cH
+// <__C87> volatile __io _A_TCNT1
+_A_TCNT1:
+        DS8 2
+
+        ASEGN ABSOLUTE:DATA:NOROOT,04eH
+// <__C89> volatile __io _A_TCCR1B
+_A_TCCR1B:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:NOROOT,058H
+// <__C109> volatile __io _A_TIFR
+_A_TIFR:
+        DS8 1
+
+        ASEGN ABSOLUTE:DATA:NOROOT,059H
+// <__C111> volatile __io _A_TIMSK
+_A_TIMSK:
+        DS8 1
+//   17 #include "compiler.h"
+//   18 #include "stdafx.h"
+//   19 
+//   20 #define SET_ICP_RISING  sbi (TCCR1B, ICES1); // set ICP as rising edge sensitive
+//   21 #define SET_ICP_FALLING cbi (TCCR1B, ICES1); // set ICP as falling edge sensitive
+//   22 #define ICP_IS_RISING   ((TCCR1B&(1<<ICES1))!=0) // check that ICP is rising edge sensitive
+//   23 #define ICP_IS_FALLING  ((TCCR1B&(1<<ICES1))==0) // check that ICP is falling edge sensitive
+//   24 
+//   25 #define InRange(TVAL, TSETUP, dT) ((TVAL<=(TSETUP+dT))&&(TVAL>=(TSETUP-dT)))
+//   26 #define SetTimer_us(us) (us*XTALL/8)  // return timer counter value for microseconds
+//   27 
+//   28 #define LED     PD5   // LED pin
+//   29 #define LEDPORT PORTD // LED port
+//   30 #define LEDDDR  DDRD  // LED ddr
+//   31 #define LED_ON  sbi (LEDPORT, LED)  // turn on LED
+//   32 #define LED_OFF cbi (LEDPORT, LED)  // turn off LED
+//   33 
+//   34 //#define us1000  SetTimer_us(973) // Timer Value for 1ms pulse width
+//   35 //#define us500   SetTimer_us(491) // Timer Value for 0.5ms pulse width
+//   36 #define us1000  SetTimer_us(1000) // Timer Value for 1ms pulse width
+//   37 #define us500   SetTimer_us(500) // Timer Value for 0.5ms pulse wid
+//   38 
+//   39 #define start_bit_led   // set if you want to view start of data pulse @ LED pin
+//   40 #define preamlbe_led    // set if you want to view preamble pulses @ LED pin
+//   41 #define bit_led         // set if you want to view decoded bits @ LED pin
+//   42 #define DEBUG_PRINT1  // set to enable debug messages for OS1 protocol
+//   43 #define DEBUG_PRINT2_1  // set to enable debug messages for OS2.1 protocol
+//   44 #define DEBUG_PRINT3    // set to enable debug messages for OS3 protocol
+//   45 
+//   46 
+//   47 enum STATES_OS1
+//   48 {
+//   49   STATE_OS1_IDLE=0,    // OS1 decoder in iddle state
+//   50   STATE_OS1_PREAMBULE, // OS1 decoder starts to receive the preamble
+//   51   STATE_OS1_SYNC1,     // OS1 decoder waits SYNC1 pulse
+//   52   STATE_OS1_SYNC2,     // OS1 decoder waits SYNC2 pulse
+//   53   STATE_OS1_SYNC3,     // OS1 decoder waits SYNC3 pulse
+//   54   STATE_OS1_DATA,      // OS1 decoder receiving DATA
+//   55 };
+//   56 
+//   57 enum STATES_OS2
+//   58 {
+//   59   STATE_OS2_IDLE=0,     // OS2.1 decoder in iddle state
+//   60   STATE_OS2_PREAMBULE,
+//   61   STATE_OS2_SYNC,       // OS2.1 decoder is synchronised with preamble pulses
+//   62   STATE_OS2_DATA        // start-bit is received and OS2.1 decoder is redy to decode data
+//   63 };    
+//   64 
+//   65 enum STATES_OS3
+//   66 {
+//   67   STATE_OS3_IDLE=0,     // OS3 decoder in iddle state
+//   68   STATE_OS3_PREAMBULE,
+//   69   STATE_OS3_SYNC,       // OS3 decoder is synchronised with preamble pulses
+//   70   STATE_OS3_DATA        // start-bit is received and OS3 decoder is redy to decode data
+//   71 };    
+//   72 
+//   73 
+//   74 enum STATES_DECODER
+//   75 {
+//   76   STATE_DECODER_IDLE=0, // OS decoder is in iddle state
+//   77   STATE_DECODER_OS1,    // OS decoder in OS1 mode
+//   78   STATE_DECODER_OS2,    // OS decoder in OS2 mode
+//   79   STATE_DECODER_OS3     // OS decoder in OS3 mode
+//   80 };
+//   81 
+//   82 
+//   83 typedef struct
+//   84 {
+//   85   UINT16 oldICP;
+//   86 //  UINT16 newICP;
+//   87 } ICP_VARIABLES_STRUCTURE;
+//   88 
+//   89 typedef struct
+//   90 {
+//   91 //  UINT8 Stream[16];
+//   92   UINT8 BitPosition;
+//   93   UINT8 SyncCnt;
+//   94   UINT8 State;
+//   95   UINT8 LastBit;
+//   96 } OS1_VARIABLES_STRUCTURE;
+//   97 
+//   98 typedef struct
+//   99 {
+//  100 //  UINT8 Stream[32];
+//  101   UINT8 BitPosition;
+//  102   UINT8 SyncCnt;
+//  103   UINT8 State;
+//  104   UINT8 LastBit;
+//  105 } OS2_VARIABLES_STRUCTURE;
+//  106 
+//  107 typedef struct
+//  108 {
+//  109 //  UINT8 Stream[16];
+//  110   UINT8 BitPosition;
+//  111   UINT8 SyncCnt;
+//  112   UINT8 State;
+//  113   UINT8 LastBit;
+//  114 } OS3_VARIABLES_STRUCTURE;
+//  115 
+
+        RSEG NEAR_N:DATA:NOROOT(0)
+//  116 __no_init UINT8 Stream[32];
+//  117 __no_init ICP_VARIABLES_STRUCTURE ICP_VARS;
+//  118 __no_init OS1_VARIABLES_STRUCTURE OS1_VARS;
+OS1_VARS:
+        DS8 4
+//  119 __no_init OS2_VARIABLES_STRUCTURE OS2_VARS;
+OS2_VARS:
+        DS8 4
+//  120 __no_init OS3_VARIABLES_STRUCTURE OS3_VARS;
+OS3_VARS:
+        DS8 4
+ICP_VARS:
+        DS8 2
+//  121 __no_init char STATE_DECODER;
+STATE_DECODER:
+        DS8 1
+Stream:
+        DS8 32
+//  122 
+//  123 inline void UART_TX(char var)
+//  124 {
+//  125    while ( !( UCSRA & (1<<UDRE)));
+//  126    UDR = var;
+//  127 };
+//  128 
+//  129 //Print 0x0A,0x0B
+//  130 inline void print_rn (void)
+//  131 { 
+//  132   UART_TX(0x0A);
+//  133   UART_TX(0x0D);
+//  134 }
+//  135 
+
+        RSEG NEAR_N:DATA:NOROOT(0)
+//  136 __no_init char debug_buff[32];
+debug_buff:
+        DS8 32
+
+        RSEG NEAR_Z:DATA:NOROOT(0)
+        REQUIRE `?<Segment init: NEAR_Z>`
+//  137 unsigned char debug_index=0;
+debug_index:
+        DS8 1
+//  138 
+
+        RSEG CODE:CODE:NOROOT(1)
+//  139 void uart_init(void)
+uart_init:
+        CFI Block cfiBlock0 Using cfiCommon0
+        CFI Function uart_init
+//  140 {
+//  141 /* UART0 initialisation */
+//  142 /* desired baud rate: 115200 */
+//  143 /* actual baud rate: 115200 (0.0%) */
+//  144 /* char size: 8 bit */
+//  145 /* parity: Disabled */
+//  146 UCSRB = 0x00; /* disable while setting baud rate */
+        LDI     R16, 0
+        OUT     0x0A, R16
+//  147 UCSRA = 0x00;
+        OUT     0x0B, R16
+//  148 UCSRC = 0x86; // 8 bit data
+        LDI     R16, 134
+        OUT     0x20, R16
+//  149 UBRRL = 8; // set baud rate lo (38400 @ 16 MHz)
+        LDI     R16, 8
+        OUT     0x09, R16
+//  150 UBRRH = 0x00; /* set baud rate hi */
+        LDI     R16, 0
+        OUT     0x20, R16
+//  151 UCSRB = 0x08; //TX are enabled
+        LDI     R16, 8
+        OUT     0x0A, R16
+//  152 }
+        RET
+        CFI EndBlock cfiBlock0
+        REQUIRE _A_UBRRL
+        REQUIRE _A_UCSRB
+        REQUIRE _A_UCSRA
+        REQUIRE _A_UBRRH
+//  153 
+//  154 /***********************************************
+//  155 Fast i2a routine for AVR 8bit platform
+//  156 by RST7/CBSIE
+//  157 ***********************************************/
+
+        RSEG CODE:CODE:NOROOT(1)
+//  158 __z void i2a(char *s, UINT16 v) 
+i2a:
+        CFI Block cfiBlock1 Using cfiCommon0
+        CFI Function i2a
+//  159 {
+//  160 asm (" \n"  
+//  161 "//   14 {\n"
+//  162 "//   15   UINT8 m0; //R16\n"
+//  163 "//   16   UINT8 m1; //R17\n"
+//  164 "//R18-R20 - 24bit fmul result\n"
+//  165 "//R21 - c,b,a ->06 8D B9\n"
+//  166 "//R22 - zero reg\n"
+//  167 "	CLR	R22\n"
+//  168 "	LDI	R21,0x06\n"
+//  169 "//  v=__multiply_unsigned(m0,0x06)+3;\n"
+//  170 "	MUL	R16,R21\n"
+//  171 "	MOVW	R19:R18,R1:R0\n"
+//  172 "	SUBI	R18,0xFD\n"
+//  173 "	SBCI	R19,0xFF\n"
+//  174 "//  v+=__multiply_unsigned(m1,0x06)<<8;\n"
+//  175 "	MUL	R17,R21\n"
+//  176 "	MOV	R20,R1\n"
+//  177 "	ADD	R19,R0\n"
+//  178 "	ADC	R20,R22\n"
+//  179 "//  v+=__multiply_unsigned(m1,0x8D);\n"
+//  180 "       LDI     R21, 0x8D\n"
+//  181 "       MUL     R17, R21\n"
+//  182 "       ADD     R18, R0\n"
+//  183 "       ADC     R19, R1\n"
+//  184 "	ADC	R20, R22\n"
+//  185 "//  v+=__multiply_unsigned(m0,0x8D)>>8;\n"
+//  186 "       MUL     R16, R21\n"
+//  187 "       ADD     R18, R1\n"
+//  188 "       ADC     R19, R22\n"
+//  189 "	ADC	R20, R22\n"
+//  190 "//  v+=__multiply_unsigned(m1,0xB9)>>8;\n"
+//  191 "	LDI	R16,0x10    ; Counter & flags\n"
+//  192 "	LDI	R21,0xB9\n"
+//  193 "       MUL     R17, R21\n"
+//  194 "       LDI     R21, 10    ; Next multiplicand\n"
+//  195 "       ADD     R18, R1\n"
+//  196 "       ADC     R19, R22\n"
+//  197 "	ADC	R20, R22\n"
+//  198 "	BREQ	L_i2a_0\n"
+//  199 "	SUBI	R20,208\n"
+//  200 "	ST	Z+,R20\n"
+//  201 "	INC	R16\n"
+//  202 "L_i2a_0:\n"
+//  203 "//   39     UINT16 hv;\n"
+//  204 "//   40     UINT8 bv;\n"
+//  205 "//   41     bv=v>>8;\n"
+//  206 "       MOV     R17, R19\n"
+//  207 "//   42     v=__multiply_unsigned(v,10);\n"
+//  208 "       MUL     R18, R21\n"
+//  209 "       MOVW    R19:R18, R1:R0\n"
+//  210 "//   43     hv=__multiply_unsigned(bv,10);\n"
+//  211 "       MUL     R17, R21\n"
+//  212 "//   44     v+=(hv&0xFF)<<8;\n"
+//  213 "       ADD     R19, R0\n"
+//  214 "//   45     if (SREG_Bit0) hv+=0x100;\n"
+//  215 "	ADC	R1, R22\n"
+//  216 "//   46     bv=hv>>8;\n"
+//  217 "       MOV     R17, R1\n"
+//  218 "//   47     if ((i|bv)&0x8F)\n"
+//  219 "       MOV     R20, R1\n"
+//  220 "       OR      R20, R16\n"
+//  221 "       ANDI    R20, 0x8F\n"
+//  222 "       BREQ    L_i2a_1\n"
+//  223 "//   48     {\n"
+//  224 "//   49       *s++=bv+'0';\n"
+//  225 "	SUBI	R17,208\n"
+//  226 "	ST	Z+,R17\n"
+//  227 "//   50       i|=1;\n"
+//  228 "//     ORI     R18, 0x01\n"
+//  229 "L_i2a_1:\n"
+//  230 "//   51     }\n"
+//  231 "//   52     i<<=1;\n"
+//  232 "	ROL	R16\n"
+//  233 "//   54   while(!SREG_Bit0);\n"
+//  234 "       BRBC    0, L_i2a_0\n"
+//  235 "//   55   *s=0;\n"
+//  236 "       ST      Z, R22\n"
+//  237 "//   56 }\n");
+        //   14 {
+        //   15   UINT8 m0; //R16
+        //   16   UINT8 m1; //R17
+        //R18-R20 - 24bit fmul result
+        //R21 - c,b,a ->06 8D B9
+        //R22 - zero reg
+        CLR     R22
+        LDI     R21,0x06
+        //  v=__multiply_unsigned(m0,0x06)+3;
+        MUL     R16,R21
+        MOVW    R19:R18,R1:R0
+        SUBI    R18,0xFD
+        SBCI    R19,0xFF
+        //  v+=__multiply_unsigned(m1,0x06)<<8;
+        MUL     R17,R21
+        MOV     R20,R1
+        ADD     R19,R0
+        ADC     R20,R22
+        //  v+=__multiply_unsigned(m1,0x8D);
+        LDI     R21, 0x8D
+        MUL     R17, R21
+        ADD     R18, R0
+        ADC     R19, R1
+        ADC     R20, R22
+        //  v+=__multiply_unsigned(m0,0x8D)>>8;
+        MUL     R16, R21
+        ADD     R18, R1
+        ADC     R19, R22
+        ADC     R20, R22
+        //  v+=__multiply_unsigned(m1,0xB9)>>8;
+        LDI     R16,0x10    ; Counter & flags
+        LDI     R21,0xB9
+        MUL     R17, R21
+        LDI     R21, 10    ; Next multiplicand
+        ADD     R18, R1
+        ADC     R19, R22
+        ADC     R20, R22
+        BREQ    L_i2a_0
+        SUBI    R20,208
+        ST      Z+,R20
+        INC     R16
+L_i2a_0:
+        //   39     UINT16 hv;
+        //   40     UINT8 bv;
+        //   41     bv=v>>8;
+        MOV     R17, R19
+        //   42     v=__multiply_unsigned(v,10);
+        MUL     R18, R21
+        MOVW    R19:R18, R1:R0
+        //   43     hv=__multiply_unsigned(bv,10);
+        MUL     R17, R21
+        //   44     v+=(hv&0xFF)<<8;
+        ADD     R19, R0
+        //   45     if (SREG_Bit0) hv+=0x100;
+        ADC     R1, R22
+        //   46     bv=hv>>8;
+        MOV     R17, R1
+        //   47     if ((i|bv)&0x8F)
+        MOV     R20, R1
+        OR      R20, R16
+        ANDI    R20, 0x8F
+        BREQ    L_i2a_1
+        //   48     {
+        //   49       *s++=bv+'0';
+        SUBI    R17,208
+        ST      Z+,R17
+        //   50       i|=1;
+        //     ORI     R18, 0x01
+L_i2a_1:
+        //   51     }
+        //   52     i<<=1;
+        ROL     R16
+        //   54   while(!SREG_Bit0);
+        BRBC    0, L_i2a_0
+        //   55   *s=0;
+        ST      Z, R22
+        //   56 }
+//  238 //      RET
+//  239 }
+        RET
+        CFI EndBlock cfiBlock1
+//  240 
+//  241 /***********************************************
+//  242 integer to HEX routine
+//  243 ***********************************************/
+
+        RSEG CODE:CODE:NOROOT(1)
+//  244 void i2hex(UINT8 val, char* dest, int len)
+i2hex:
+        CFI Block cfiBlock2 Using cfiCommon0
+        CFI Function i2hex
+//  245 {
+        MOV     R17, R27
+        MOV     R0, R26
+//  246 	char* cp;
+//  247 	UINT8 n;
+//  248 	char x;        
+//  249 	n = val;
+        MOV     R22, R16
+//  250 	cp = &dest[len];        
+        MOVW    R27:R26, R19:R18
+        ADD     R26, R20
+        ADC     R27, R21
+//  251         *cp='\0';
+        LDI     R16, 0
+        ST      X, R16
+        RJMP    ??i2hex_0
+//  252 	while (cp > dest)
+//  253 	{
+//  254 		x = n & 0xF;
+//  255 		n >>= 4;
+//  256 		*--cp = x + ((x > 9) ? 'A' - 10 : '0');
+??i2hex_1:
+        LDI     R16, 48
+??i2hex_2:
+        ADD     R20, R16
+        ST      Z, R20
+??i2hex_0:
+        CP      R18, R26
+        CPC     R19, R27
+        BRCC    ??i2hex_3
+        MOV     R20, R22
+        ANDI    R20, 0x0F
+        SWAP    R22
+        ANDI    R22, 0x0F
+        SBIW    R27:R26, 1
+        MOVW    R31:R30, R27:R26
+        CPI     R20, 10
+        BRCS    ??i2hex_1
+        LDI     R16, 55
+        RJMP    ??i2hex_2
+//  257 	}
+//  258 	return;
+??i2hex_3:
+        MOV     R26, R0
+        MOV     R27, R17
+        RET
+        CFI EndBlock cfiBlock2
+//  259 }
+//  260 
+//  261 #pragma inline = forced
+//  262 print_hexword (unsigned int word)
+//  263 {
+//  264   __no_init char h2a_locbuf[5];
+//  265   char* ph2a;
+//  266   ph2a=&h2a_locbuf[0];
+//  267   i2hex((UINT8)(word>>8), ph2a, 2);      
+//  268 //  ph2a=&h2a_locbuf[0];
+//  269   while (*ph2a) UART_TX(*ph2a++);  
+//  270   ph2a=&h2a_locbuf[0];
+//  271   i2hex((UINT8)(word), ph2a, 2);      
+//  272 //  ph2a=&h2a_locbuf[0];
+//  273   while (*ph2a) UART_TX(*ph2a++); 
+//  274   UART_TX(','); 
+//  275 }
+//  276 
+//  277 
+
+        RSEG CODE:CODE:NOROOT(1)
+//  278 void print_fstr (const char __flash * s)
+print_fstr:
+        CFI Block cfiBlock3 Using cfiCommon0
+        CFI Function print_fstr
+//  279 {
+        RJMP    ??print_fstr_0
+//  280       while (*s) UART_TX (*s++);
+??print_fstr_1:
+        SBIS    0x0B, 0x05
+        RJMP    ??print_fstr_1
+        OUT     0x0C, R18
+        SUBI    R16, 255
+        SBCI    R17, 255
+??print_fstr_0:
+        MOVW    R31:R30, R17:R16
+        LPM     R18, Z
+        TST     R18
+        BRNE    ??print_fstr_1
+//  281 }
+        RET
+        CFI EndBlock cfiBlock3
+        REQUIRE _A_UCSRA
+        REQUIRE _A_UDR
+//  282 
+
+        RSEG CODE:CODE:NOROOT(1)
+//  283 void print_decnum ( const char __flash * s, UINT16 Num)
+print_decnum:
+        CFI Block cfiBlock4 Using cfiCommon0
+        CFI Function print_decnum
+//  284 {
+        FUNCALL print_decnum, i2a
+        LOCFRAME CSTACK, 10, STACK
+        LOCFRAME RSTACK, 2, STACK
+        ARGFRAME RSTACK, 0, STACK
+        ST      -Y, R27
+        CFI R27 Frame(CFA_Y, -1)
+        CFI CFA_Y Y+1
+        ST      -Y, R26
+        CFI R26 Frame(CFA_Y, -2)
+        CFI CFA_Y Y+2
+        ST      -Y, R25
+        CFI R25 Frame(CFA_Y, -3)
+        CFI CFA_Y Y+3
+        ST      -Y, R24
+        CFI R24 Frame(CFA_Y, -4)
+        CFI CFA_Y Y+4
+        SBIW    R29:R28, 6
+        CFI CFA_Y Y+10
+        MOVW    R25:R24, R17:R16
+        MOVW    R17:R16, R19:R18
+//  285   char* pi2a;
+//  286   __no_init char i2a_locbuf[6];
+//  287   pi2a=&i2a_locbuf[0];
+        MOVW    R27:R26, R29:R28
+//  288   i2a(pi2a, Num);
+        MOVW    R31:R30, R29:R28
+        RCALL   i2a
+        RJMP    ??print_decnum_0
+//  289   while (*s) UART_TX (*s++);
+??print_decnum_1:
+        SBIS    0x0B, 0x05
+        RJMP    ??print_decnum_1
+        OUT     0x0C, R16
+        ADIW    R25:R24, 1
+??print_decnum_0:
+        MOVW    R31:R30, R25:R24
+        LPM     R16, Z
+        TST     R16
+        BRNE    ??print_decnum_1
+//  290 //  UART_TX(':'); 
+//  291   while (*pi2a) UART_TX(*pi2a++);  
+??print_decnum_2:
+        LD      R16, X+
+        TST     R16
+        BREQ    ??print_decnum_3
+??print_decnum_4:
+        SBIS    0x0B, 0x05
+        RJMP    ??print_decnum_4
+        OUT     0x0C, R16
+        RJMP    ??print_decnum_2
+??print_decnum_3:
+        SBIS    0x0B, 0x05
+        RJMP    ??print_decnum_3
+        LDI     R16, 44
+        OUT     0x0C, R16
+//  292   UART_TX(',');
+//  293   UART_TX(' '); 
+??print_decnum_5:
+        SBIS    0x0B, 0x05
+        RJMP    ??print_decnum_5
+        CFI EndBlock cfiBlock4
+        REQUIRE ?Subroutine0
+        REQUIRE _A_UCSRA
+        REQUIRE _A_UDR
+        ;               // Fall through to label ?Subroutine0
+//  294 }
+
+        RSEG CODE:CODE:NOROOT(1)
+?Subroutine0:
+        CFI Block cfiBlock5 Using cfiCommon0
+        CFI NoFunction
+        CFI CFA_Y Y+10
+        CFI R24 Frame(CFA_Y, -4)
+        CFI R25 Frame(CFA_Y, -3)
+        CFI R26 Frame(CFA_Y, -2)
+        CFI R27 Frame(CFA_Y, -1)
+        LDI     R16, 32
+        OUT     0x0C, R16
+        ADIW    R29:R28, 6
+        CFI CFA_Y Y+4
+        LD      R24, Y+
+        CFI CFA_Y Y+3
+        CFI R24 SameValue
+        LD      R25, Y+
+        CFI CFA_Y Y+2
+        CFI R25 SameValue
+        LD      R26, Y+
+        CFI CFA_Y Y+1
+        CFI R26 SameValue
+        LD      R27, Y+
+        CFI CFA_Y Y+0
+        CFI R27 SameValue
+        RET
+        CFI EndBlock cfiBlock5
+//  295 
+
+        RSEG CODE:CODE:NOROOT(1)
+//  296 void print_hexnum ( const char __flash * s, UINT16 Num)
+print_hexnum:
+        CFI Block cfiBlock6 Using cfiCommon0
+        CFI Function print_hexnum
+//  297 {
+        FUNCALL print_hexnum, i2hex
+        LOCFRAME CSTACK, 10, STACK
+        LOCFRAME RSTACK, 2, STACK
+        ARGFRAME RSTACK, 0, STACK
+        ST      -Y, R27
+        CFI R27 Frame(CFA_Y, -1)
+        CFI CFA_Y Y+1
+        ST      -Y, R26
+        CFI R26 Frame(CFA_Y, -2)
+        CFI CFA_Y Y+2
+        ST      -Y, R25
+        CFI R25 Frame(CFA_Y, -3)
+        CFI CFA_Y Y+3
+        ST      -Y, R24
+        CFI R24 Frame(CFA_Y, -4)
+        CFI CFA_Y Y+4
+        SBIW    R29:R28, 6
+        CFI CFA_Y Y+10
+        MOVW    R25:R24, R17:R16
+        MOV     R16, R18
+//  298   char* pi2a;
+//  299   __no_init char i2a_locbuf[6];
+//  300   pi2a=&i2a_locbuf[0];
+        MOVW    R27:R26, R29:R28
+//  301   i2hex(Num, pi2a,2);
+        LDI     R20, 2
+        LDI     R21, 0
+        MOVW    R19:R18, R29:R28
+        RCALL   i2hex
+        RJMP    ??print_hexnum_0
+//  302   while (*s) UART_TX (*s++);
+??print_hexnum_1:
+        SBIS    0x0B, 0x05
+        RJMP    ??print_hexnum_1
+        OUT     0x0C, R16
+        ADIW    R25:R24, 1
+??print_hexnum_0:
+        MOVW    R31:R30, R25:R24
+        LPM     R16, Z
+        TST     R16
+        BRNE    ??print_hexnum_1
+//  303 //  UART_TX(':'); 
+//  304   while (*pi2a) UART_TX(*pi2a++);  
+??print_hexnum_2:
+        LD      R16, X+
+        TST     R16
+        BREQ    ??print_hexnum_3
+??print_hexnum_4:
+        SBIS    0x0B, 0x05
+        RJMP    ??print_hexnum_4
+        OUT     0x0C, R16
+        RJMP    ??print_hexnum_2
+??print_hexnum_3:
+        SBIS    0x0B, 0x05
+        RJMP    ??print_hexnum_3
+        LDI     R16, 44
+        OUT     0x0C, R16
+//  305   UART_TX(',');
+//  306   UART_TX(' '); 
+??print_hexnum_5:
+        SBIS    0x0B, 0x05
+        RJMP    ??print_hexnum_5
+        RJMP    ?Subroutine0
+        CFI EndBlock cfiBlock6
+        REQUIRE _A_UCSRA
+        REQUIRE _A_UDR
+//  307 }
+//  308 
+
+        RSEG CODE:CODE:NOROOT(1)
+//  309 void print_stream (const char __flash * f, UINT8 *Num, UINT8 len)
+print_stream:
+        CFI Block cfiBlock7 Using cfiCommon0
+        CFI Function print_stream
+//  310 {
+        FUNCALL print_stream, i2hex
+        LOCFRAME CSTACK, 8, STACK
+        LOCFRAME RSTACK, 2, STACK
+        ARGFRAME RSTACK, 0, STACK
+        ST      -Y, R5
+        CFI R5 Frame(CFA_Y, -1)
+        CFI CFA_Y Y+1
+        ST      -Y, R4
+        CFI R4 Frame(CFA_Y, -2)
+        CFI CFA_Y Y+2
+        ST      -Y, R26
+        CFI R26 Frame(CFA_Y, -3)
+        CFI CFA_Y Y+3
+        ST      -Y, R25
+        CFI R25 Frame(CFA_Y, -4)
+        CFI CFA_Y Y+4
+        ST      -Y, R24
+        CFI R24 Frame(CFA_Y, -5)
+        CFI CFA_Y Y+5
+        REQUIRE ?Register_R4_is_cg_reg
+        REQUIRE ?Register_R5_is_cg_reg
+        SBIW    R29:R28, 3
+        CFI CFA_Y Y+8
+        MOVW    R31:R30, R17:R16
+        MOVW    R25:R24, R19:R18
+        MOV     R26, R20
+        RJMP    ??print_stream_0
+//  311   __no_init char i2a_locbuf[3];
+//  312   char *p;
+//  313   while (*f) UART_TX (*f++);    
+??print_stream_1:
+        SBIS    0x0B, 0x05
+        RJMP    ??print_stream_1
+        OUT     0x0C, R16
+??print_stream_0:
+        LPM     R16, Z+
+        TST     R16
+        BRNE    ??print_stream_1
+//  314   p= &i2a_locbuf[0];
+        MOVW    R5:R4, R29:R28
+        TST     R20
+        BREQ    ??print_stream_2
+??print_stream_3:
+        DEC     R26
+//  315 //  print_rn();
+//  316   while (len--)
+//  317   {
+//  318     i2hex(*Num++, p,2);
+        LDI     R20, 2
+        LDI     R21, 0
+        MOVW    R19:R18, R5:R4
+        MOVW    R31:R30, R25:R24
+        LD      R16, Z+
+        MOVW    R25:R24, R31:R30
+        RCALL   i2hex
+//  319     UART_TX('0'); UART_TX('x');
+??print_stream_4:
+        SBIS    0x0B, 0x05
+        RJMP    ??print_stream_4
+        LDI     R16, 48
+        OUT     0x0C, R16
+??print_stream_5:
+        SBIS    0x0B, 0x05
+        RJMP    ??print_stream_5
+        LDI     R16, 120
+        OUT     0x0C, R16
+        RJMP    ??print_stream_6
+//  320     while (*p) UART_TX (*p++);    
+??print_stream_7:
+        SBIS    0x0B, 0x05
+        RJMP    ??print_stream_7
+        OUT     0x0C, R16
+        LDI     R16, 1
+        ADD     R4, R16
+        LDI     R16, 0
+        ADC     R5, R16
+??print_stream_6:
+        MOVW    R31:R30, R5:R4
+        LD      R16, Z
+        TST     R16
+        BRNE    ??print_stream_7
+//  321     if (len) UART_TX(','); UART_TX(' ');
+        TST     R26
+        BREQ    ??print_stream_8
+??print_stream_9:
+        SBIS    0x0B, 0x05
+        RJMP    ??print_stream_9
+        LDI     R16, 44
+        OUT     0x0C, R16
+??print_stream_8:
+        SBIS    0x0B, 0x05
+        RJMP    ??print_stream_8
+        LDI     R16, 32
+        OUT     0x0C, R16
+//  322   }  
+        BRNE    ??print_stream_3
+//  323 }
+??print_stream_2:
+        ADIW    R29:R28, 3
+        CFI CFA_Y Y+5
+        LD      R24, Y+
+        CFI R24 SameValue
+        CFI CFA_Y Y+4
+        LD      R25, Y+
+        CFI R25 SameValue
+        CFI CFA_Y Y+3
+        LD      R26, Y+
+        CFI R26 SameValue
+        CFI CFA_Y Y+2
+        LD      R4, Y+
+        CFI R4 SameValue
+        CFI CFA_Y Y+1
+        LD      R5, Y+
+        CFI R5 SameValue
+        CFI CFA_Y Y+0
+        RET
+        CFI EndBlock cfiBlock7
+        REQUIRE _A_UCSRA
+        REQUIRE _A_UDR
+//  324 
+//  325 #define Reset_OS1 {if (STATE_DECODER==STATE_DECODER_OS1) STATE_DECODER=STATE_DECODER_IDLE; OS1_VARS.State=STATE_OS1_IDLE; OS1_VARS.BitPosition=0; OS1_VARS.SyncCnt=0;}
+//  326 #define Reset_OS2 {if (STATE_DECODER==STATE_DECODER_OS2) STATE_DECODER=STATE_DECODER_IDLE; OS2_VARS.State=STATE_OS2_IDLE; OS2_VARS.BitPosition=0; OS2_VARS.SyncCnt=0;}
+//  327 #define Reset_OS3 {if (STATE_DECODER==STATE_DECODER_OS3) STATE_DECODER=STATE_DECODER_IDLE; OS3_VARS.State=STATE_OS3_IDLE; OS3_VARS.BitPosition=0; OS3_VARS.SyncCnt=0;}
+//  328 #define Stream_Error {STATE_DECODER=STATE_DECODER_IDLE; Reset_OS1; Reset_OS2; Reset_OS3;LED_OFF;debug_index=0;}
+//  329 
+//  330 #pragma inline = forced
+//  331 static void ArrBitDefine (UINT8 BitNum, UINT8 BitVal, UINT8* Array)
+//  332 {
+//  333   UINT8 ByteNumber;  
+//  334   ByteNumber=(BitNum>>3);
+//  335   UINT8* Addr = &Array[ByteNumber];
+//  336   UINT8 BN =(BitNum&0x07);
+//  337   if (BitVal)    sbi (*Addr, BN);
+//  338   else  cbi (*Addr, BN);
+//  339 }
+//  340 
+//  341 
+//  342 #pragma vector =  TIMER1_COMPA_vect
+
+        RSEG CODE:CODE:NOROOT(1)
+//  343 __interrupt void TIMER1_COMPA(void)
+TIMER1_COMPA:
+        CFI Block cfiBlock8 Using cfiCommon1
+        CFI Function TIMER1_COMPA
+//  344 {
+        FUNCALL TIMER1_COMPA, print_fstr
+        LOCFRAME CSTACK, 15, STACK
+        LOCFRAME RSTACK, 2, STACK
+        ARGFRAME RSTACK, 0, STACK
+        FUNCALL TIMER1_COMPA, print_stream
+        LOCFRAME CSTACK, 15, STACK
+        LOCFRAME RSTACK, 2, STACK
+        ARGFRAME RSTACK, 0, STACK
+        FUNCALL TIMER1_COMPA, print_fstr
+        LOCFRAME CSTACK, 15, STACK
+        LOCFRAME RSTACK, 2, STACK
+        ARGFRAME RSTACK, 0, STACK
+        FUNCALL TIMER1_COMPA, print_stream
+        LOCFRAME CSTACK, 15, STACK
+        LOCFRAME RSTACK, 2, STACK
+        ARGFRAME RSTACK, 0, STACK
+        FUNCALL TIMER1_COMPA, print_fstr
+        LOCFRAME CSTACK, 15, STACK
+        LOCFRAME RSTACK, 2, STACK
+        ARGFRAME RSTACK, 0, STACK
+        FUNCALL TIMER1_COMPA, print_stream
+        LOCFRAME CSTACK, 15, STACK
+        LOCFRAME RSTACK, 2, STACK
+        ARGFRAME RSTACK, 0, STACK
+        ST      -Y, R24
+        CFI R24 Frame(CFA_Y, -1)
+        CFI CFA_Y Y+1
+        ST      -Y, R31
+        CFI R31 Frame(CFA_Y, -2)
+        CFI CFA_Y Y+2
+        ST      -Y, R30
+        CFI R30 Frame(CFA_Y, -3)
+        CFI CFA_Y Y+3
+        ST      -Y, R3
+        CFI R3 Frame(CFA_Y, -4)
+        CFI CFA_Y Y+4
+        ST      -Y, R2
+        CFI R2 Frame(CFA_Y, -5)
+        CFI CFA_Y Y+5
+        ST      -Y, R1
+        CFI R1 Frame(CFA_Y, -6)
+        CFI CFA_Y Y+6
+        ST      -Y, R0
+        CFI R0 Frame(CFA_Y, -7)
+        CFI CFA_Y Y+7
+        ST      -Y, R23
+        CFI R23 Frame(CFA_Y, -8)
+        CFI CFA_Y Y+8
+        ST      -Y, R22
+        CFI R22 Frame(CFA_Y, -9)
+        CFI CFA_Y Y+9
+        ST      -Y, R21
+        CFI R21 Frame(CFA_Y, -10)
+        CFI CFA_Y Y+10
+        ST      -Y, R20
+        CFI R20 Frame(CFA_Y, -11)
+        CFI CFA_Y Y+11
+        ST      -Y, R19
+        CFI R19 Frame(CFA_Y, -12)
+        CFI CFA_Y Y+12
+        ST      -Y, R18
+        CFI R18 Frame(CFA_Y, -13)
+        CFI CFA_Y Y+13
+        ST      -Y, R17
+        CFI R17 Frame(CFA_Y, -14)
+        CFI CFA_Y Y+14
+        ST      -Y, R16
+        CFI R16 Frame(CFA_Y, -15)
+        CFI CFA_Y Y+15
+        IN      R24, 0x3F
+//  345 //  unsigned char  i;
+//  346   debug_index=0;
+        LDI     R16, 0
+        STS     debug_index, R16
+//  347   if (OS1_VARS.State==STATE_OS1_DATA)
+        LDS     R16, (OS1_VARS + 2)
+        CPI     R16, 5
+        BRNE    ??TIMER1_COMPA_0
+//  348   {
+//  349     #ifdef DEBUG_PRINT1
+//  350       print_fstr("\r\nE1");
+        LDI     R16, LOW(`?<Constant "\\r\\nE1">`)
+        LDI     R17, (`?<Constant "\\r\\nE1">`) >> 8
+        RCALL   print_fstr
+//  351     #endif  
+//  352     // Try to process OS1 data
+//  353     __no_operation();
+        NOP
+//  354      print_stream("\r\nOS1.0, ", &Stream[0], OS1_VARS.BitPosition>>3);
+        LDI     R30, LOW(OS1_VARS)
+        LDI     R31, (OS1_VARS) >> 8
+        LD      R20, Z
+        LSR     R20
+        LSR     R20
+        LSR     R20
+        ADIW    R31:R30, 15
+        MOVW    R19:R18, R31:R30
+        LDI     R16, LOW((`?<Constant "\\r\\nE1">` + 5))
+        LDI     R17, HIGH((`?<Constant "\\r\\nE1">` + 5))
+        RCALL   print_stream
+//  355   }
+//  356   if (OS2_VARS.State==STATE_OS2_DATA)
+??TIMER1_COMPA_0:
+        LDS     R16, (OS1_VARS + 6)
+        CPI     R16, 3
+        BRNE    ??TIMER1_COMPA_1
+//  357   {
+//  358     #ifdef DEBUG_PRINT2_1
+//  359       print_fstr("\r\nE2");
+        LDI     R16, LOW((`?<Constant "\\r\\nE1">` + 15))
+        LDI     R17, HIGH((`?<Constant "\\r\\nE1">` + 15))
+        RCALL   print_fstr
+//  360     #endif      
+//  361     // Try to process OS2 data
+//  362      __no_operation();     
+        NOP
+//  363      print_stream("\r\nOS2.1, ", &Stream[0], OS2_VARS.BitPosition>>4);
+        LDI     R30, LOW(OS1_VARS)
+        LDI     R31, (OS1_VARS) >> 8
+        LDD     R20, Z+4
+        SWAP    R20
+        ANDI    R20, 0x0F
+        ADIW    R31:R30, 15
+        MOVW    R19:R18, R31:R30
+        LDI     R16, LOW((`?<Constant "\\r\\nE1">` + 20))
+        LDI     R17, HIGH((`?<Constant "\\r\\nE1">` + 20))
+        RCALL   print_stream
+//  364   }  
+//  365   if (OS3_VARS.State==STATE_OS3_DATA)
+??TIMER1_COMPA_1:
+        LDS     R16, (OS1_VARS + 10)
+        CPI     R16, 3
+        BRNE    ??TIMER1_COMPA_2
+//  366   {
+//  367     #ifdef DEBUG_PRINT3
+//  368       print_fstr("\r\nE3");
+        LDI     R16, LOW((`?<Constant "\\r\\nE1">` + 30))
+        LDI     R17, HIGH((`?<Constant "\\r\\nE1">` + 30))
+        RCALL   print_fstr
+//  369     #endif      
+//  370     // Try to process OS3 data
+//  371      __no_operation();
+        NOP
+//  372 //     print_stream("\r\ndebug: ", &debug_buff[0], 31);
+//  373      print_stream("\r\nOS3.0, ", &Stream[0], OS3_VARS.BitPosition>>3);
+        LDI     R30, LOW(OS1_VARS)
+        LDI     R31, (OS1_VARS) >> 8
+        LDD     R20, Z+8
+        LSR     R20
+        LSR     R20
+        LSR     R20
+        ADIW    R31:R30, 15
+        MOVW    R19:R18, R31:R30
+        LDI     R16, LOW((`?<Constant "\\r\\nE1">` + 35))
+        LDI     R17, HIGH((`?<Constant "\\r\\nE1">` + 35))
+        RCALL   print_stream
+//  374      print_rn();
+??TIMER1_COMPA_3:
+        SBIS    0x0B, 0x05
+        RJMP    ??TIMER1_COMPA_3
+        LDI     R16, 10
+        OUT     0x0C, R16
+??TIMER1_COMPA_4:
+        SBIS    0x0B, 0x05
+        RJMP    ??TIMER1_COMPA_4
+        LDI     R16, 13
+        OUT     0x0C, R16
+//  375   } 
+//  376     LED_OFF;
+??TIMER1_COMPA_2:
+        CBI     0x12, 0x05
+//  377     Reset_OS1;     Reset_OS2;     Reset_OS3;
+        LDS     R16, (OS1_VARS + 14)
+        CPI     R16, 1
+        BRNE    ??TIMER1_COMPA_5
+        LDI     R16, 0
+        STS     (OS1_VARS + 14), R16
+??TIMER1_COMPA_5:
+        LDI     R30, LOW(OS1_VARS)
+        LDI     R31, (OS1_VARS) >> 8
+        LDI     R16, 0
+        STD     Z+2, R16
+        ST      Z, R16
+        STD     Z+1, R16
+        LDD     R16, Z+14
+        CPI     R16, 2
+        BRNE    ??TIMER1_COMPA_6
+        LDI     R16, 0
+        STD     Z+14, R16
+??TIMER1_COMPA_6:
+        LDI     R16, 0
+        STD     Z+6, R16
+        STD     Z+4, R16
+        STD     Z+5, R16
+        LDD     R16, Z+14
+        CPI     R16, 3
+        BRNE    ??TIMER1_COMPA_7
+        LDI     R16, 0
+        STD     Z+14, R16
+??TIMER1_COMPA_7:
+        LDI     R16, 0
+        STD     Z+10, R16
+        STD     Z+8, R16
+        STD     Z+9, R16
+//  378     STATE_DECODER=STATE_DECODER_IDLE;
+        STD     Z+14, R16
+//  379     TCNT1=0;
+        OUT     0x2D, R16
+        OUT     0x2C, R16
+//  380     SET_ICP_FALLING; 
+        IN      R16, 0x2E
+        ANDI    R16, 0xBF
+        OUT     0x2E, R16
+//  381     TIFR=(1<<ICF1)|(1<<OCF1A); // Reset old interrupts flags
+        LDI     R16, 48
+        OUT     0x38, R16
+//  382 }
+        OUT     0x3F, R24
+        LD      R16, Y+
+        CFI R16 SameValue
+        CFI CFA_Y Y+14
+        LD      R17, Y+
+        CFI R17 SameValue
+        CFI CFA_Y Y+13
+        LD      R18, Y+
+        CFI R18 SameValue
+        CFI CFA_Y Y+12
+        LD      R19, Y+
+        CFI R19 SameValue
+        CFI CFA_Y Y+11
+        LD      R20, Y+
+        CFI R20 SameValue
+        CFI CFA_Y Y+10
+        LD      R21, Y+
+        CFI R21 SameValue
+        CFI CFA_Y Y+9
+        LD      R22, Y+
+        CFI R22 SameValue
+        CFI CFA_Y Y+8
+        LD      R23, Y+
+        CFI R23 SameValue
+        CFI CFA_Y Y+7
+        LD      R0, Y+
+        CFI R0 SameValue
+        CFI CFA_Y Y+6
+        LD      R1, Y+
+        CFI R1 SameValue
+        CFI CFA_Y Y+5
+        LD      R2, Y+
+        CFI R2 SameValue
+        CFI CFA_Y Y+4
+        LD      R3, Y+
+        CFI R3 SameValue
+        CFI CFA_Y Y+3
+        LD      R30, Y+
+        CFI R30 SameValue
+        CFI CFA_Y Y+2
+        LD      R31, Y+
+        CFI R31 SameValue
+        CFI CFA_Y Y+1
+        LD      R24, Y+
+        CFI R24 SameValue
+        CFI CFA_Y Y+0
+        RETI
+        CFI EndBlock cfiBlock8
+        REQUIRE _A_PORTD
+        REQUIRE _A_TCNT1
+        REQUIRE _A_TCCR1B
+        REQUIRE _A_TIFR
+        REQUIRE _A_UCSRA
+        REQUIRE _A_UDR
+//  383 
+//  384 #pragma vector =  TIMER1_CAPT_vect
+
+        RSEG CODE:CODE:NOROOT(1)
+//  385 __interrupt void ISR_TIMER1_CAPT(void)
+ISR_TIMER1_CAPT:
+        CFI Block cfiBlock9 Using cfiCommon1
+        CFI Function ISR_TIMER1_CAPT
+//  386 {
+        FUNCALL ISR_TIMER1_CAPT, print_fstr
+        LOCFRAME CSTACK, 24, STACK
+        LOCFRAME RSTACK, 2, STACK
+        ARGFRAME RSTACK, 0, STACK
+        FUNCALL ISR_TIMER1_CAPT, print_fstr
+        LOCFRAME CSTACK, 24, STACK
+        LOCFRAME RSTACK, 2, STACK
+        ARGFRAME RSTACK, 0, STACK
+        FUNCALL ISR_TIMER1_CAPT, print_fstr
+        LOCFRAME CSTACK, 24, STACK
+        LOCFRAME RSTACK, 2, STACK
+        ARGFRAME RSTACK, 0, STACK
+        FUNCALL ISR_TIMER1_CAPT, print_fstr
+        LOCFRAME CSTACK, 24, STACK
+        LOCFRAME RSTACK, 2, STACK
+        ARGFRAME RSTACK, 0, STACK
+        FUNCALL ISR_TIMER1_CAPT, print_fstr
+        LOCFRAME CSTACK, 24, STACK
+        LOCFRAME RSTACK, 2, STACK
+        ARGFRAME RSTACK, 0, STACK
+        FUNCALL ISR_TIMER1_CAPT, print_fstr
+        LOCFRAME CSTACK, 24, STACK
+        LOCFRAME RSTACK, 2, STACK
+        ARGFRAME RSTACK, 0, STACK
+        FUNCALL ISR_TIMER1_CAPT, i2hex
+        LOCFRAME CSTACK, 24, STACK
+        LOCFRAME RSTACK, 2, STACK
+        ARGFRAME RSTACK, 0, STACK
+        FUNCALL ISR_TIMER1_CAPT, i2hex
+        LOCFRAME CSTACK, 24, STACK
+        LOCFRAME RSTACK, 2, STACK
+        ARGFRAME RSTACK, 0, STACK
+        FUNCALL ISR_TIMER1_CAPT, i2hex
+        LOCFRAME CSTACK, 24, STACK
+        LOCFRAME RSTACK, 2, STACK
+        ARGFRAME RSTACK, 0, STACK
+        FUNCALL ISR_TIMER1_CAPT, i2hex
+        LOCFRAME CSTACK, 24, STACK
+        LOCFRAME RSTACK, 2, STACK
+        ARGFRAME RSTACK, 0, STACK
+        FUNCALL ISR_TIMER1_CAPT, print_fstr
+        LOCFRAME CSTACK, 24, STACK
+        LOCFRAME RSTACK, 2, STACK
+        ARGFRAME RSTACK, 0, STACK
+        FUNCALL ISR_TIMER1_CAPT, i2hex
+        LOCFRAME CSTACK, 24, STACK
+        LOCFRAME RSTACK, 2, STACK
+        ARGFRAME RSTACK, 0, STACK
+        FUNCALL ISR_TIMER1_CAPT, i2hex
+        LOCFRAME CSTACK, 24, STACK
+        LOCFRAME RSTACK, 2, STACK
+        ARGFRAME RSTACK, 0, STACK
+        FUNCALL ISR_TIMER1_CAPT, i2hex
+        LOCFRAME CSTACK, 24, STACK
+        LOCFRAME RSTACK, 2, STACK
+        ARGFRAME RSTACK, 0, STACK
+        FUNCALL ISR_TIMER1_CAPT, i2hex
+        LOCFRAME CSTACK, 24, STACK
+        LOCFRAME RSTACK, 2, STACK
+        ARGFRAME RSTACK, 0, STACK
+        FUNCALL ISR_TIMER1_CAPT, i2hex
+        LOCFRAME CSTACK, 24, STACK
+        LOCFRAME RSTACK, 2, STACK
+        ARGFRAME RSTACK, 0, STACK
+        FUNCALL ISR_TIMER1_CAPT, i2hex
+        LOCFRAME CSTACK, 24, STACK
+        LOCFRAME RSTACK, 2, STACK
+        ARGFRAME RSTACK, 0, STACK
+        FUNCALL ISR_TIMER1_CAPT, i2hex
+        LOCFRAME CSTACK, 24, STACK
+        LOCFRAME RSTACK, 2, STACK
+        ARGFRAME RSTACK, 0, STACK
+        FUNCALL ISR_TIMER1_CAPT, i2hex
+        LOCFRAME CSTACK, 24, STACK
+        LOCFRAME RSTACK, 2, STACK
+        ARGFRAME RSTACK, 0, STACK
+        FUNCALL ISR_TIMER1_CAPT, print_fstr
+        LOCFRAME CSTACK, 24, STACK
+        LOCFRAME RSTACK, 2, STACK
+        ARGFRAME RSTACK, 0, STACK
+        ST      -Y, R4
+        CFI R4 Frame(CFA_Y, -1)
+        CFI CFA_Y Y+1
+        ST      -Y, R27
+        CFI R27 Frame(CFA_Y, -2)
+        CFI CFA_Y Y+2
+        ST      -Y, R26
+        CFI R26 Frame(CFA_Y, -3)
+        CFI CFA_Y Y+3
+        ST      -Y, R25
+        CFI R25 Frame(CFA_Y, -4)
+        CFI CFA_Y Y+4
+        ST      -Y, R24
+        CFI R24 Frame(CFA_Y, -5)
+        CFI CFA_Y Y+5
+        ST      -Y, R31
+        CFI R31 Frame(CFA_Y, -6)
+        CFI CFA_Y Y+6
+        ST      -Y, R30
+        CFI R30 Frame(CFA_Y, -7)
+        CFI CFA_Y Y+7
+        ST      -Y, R3
+        CFI R3 Frame(CFA_Y, -8)
+        CFI CFA_Y Y+8
+        ST      -Y, R2
+        CFI R2 Frame(CFA_Y, -9)
+        CFI CFA_Y Y+9
+        ST      -Y, R1
+        CFI R1 Frame(CFA_Y, -10)
+        CFI CFA_Y Y+10
+        ST      -Y, R0
+        CFI R0 Frame(CFA_Y, -11)
+        CFI CFA_Y Y+11
+        ST      -Y, R23
+        CFI R23 Frame(CFA_Y, -12)
+        CFI CFA_Y Y+12
+        ST      -Y, R22
+        CFI R22 Frame(CFA_Y, -13)
+        CFI CFA_Y Y+13
+        ST      -Y, R21
+        CFI R21 Frame(CFA_Y, -14)
+        CFI CFA_Y Y+14
+        ST      -Y, R20
+        CFI R20 Frame(CFA_Y, -15)
+        CFI CFA_Y Y+15
+        ST      -Y, R19
+        CFI R19 Frame(CFA_Y, -16)
+        CFI CFA_Y Y+16
+        ST      -Y, R18
+        CFI R18 Frame(CFA_Y, -17)
+        CFI CFA_Y Y+17
+        ST      -Y, R17
+        CFI R17 Frame(CFA_Y, -18)
+        CFI CFA_Y Y+18
+        ST      -Y, R16
+        CFI R16 Frame(CFA_Y, -19)
+        CFI CFA_Y Y+19
+        IN      R4, 0x3F
+        REQUIRE ?Register_R4_is_cg_reg
+        SBIW    R29:R28, 5
+        CFI CFA_Y Y+24
+//  387   UINT16 newICP; //Local Copy of ICP register
+//  388   UINT16 period;
+//  389   newICP=ICR1;  // Read and copy current ICP value
+        IN      R24, 0x26
+        IN      R25, 0x27
+//  390   TCNT1=0; // Reset counter
+        LDI     R16, 0
+        LDI     R17, 0
+        OUT     0x2D, R16
+        OUT     0x2C, R16
+//  391   period = newICP;//-ICP_VARS.oldICP;  
+//  392     //1.5 ms pulse handler ()    
+//  393   if InRange(period, SetTimer_us(1630), 250)
+        CPI     R24, 183
+        LDI     R16, 13
+        CPC     R25, R16
+        BRCS    $+2+2
+        RJMP    ??ISR_TIMER1_CAPT_0
+        CPI     R24, 194
+        LDI     R16, 11
+        CPC     R25, R16
+        BRCC    $+2+2
+        RJMP    ??ISR_TIMER1_CAPT_0
+//  394     {      
+//  395       if (STATE_DECODER==STATE_DECODER_IDLE)
+        LDS     R16, (OS1_VARS + 14)
+        TST     R16
+        BRNE    $+2+2
+        RJMP    ??ISR_TIMER1_CAPT_1
+//  396       {
+//  397         /*
+//  398         if ICP_IS_FALLING
+//  399         {
+//  400          // Else If OS1 decoder state is "Idle" then interpretate 1.5 ms high pulse as OS1 preamble
+//  401           Reset_OS2; Reset_OS3; // set OS2, OS3 state as idle        
+//  402           OS1_VARS.BitPosition++; // Increment Preamble bits counter                
+//  403           if (OS1_VARS.BitPosition>=6) 
+//  404           {
+//  405             OS1_VARS.State=STATE_OS1_SYNC1;
+//  406             OS1_VARS.BitPosition=0;
+//  407             STATE_DECODER=STATE_DECODER_OS1;
+//  408             #ifdef DEBUG_PRINT1
+//  409             print_fstr("\r\nS11");             
+//  410             #endif
+//  411           }
+//  412          }
+//  413         */
+//  414       }
+//  415       else if (STATE_DECODER==STATE_DECODER_OS1)
+        CPI     R16, 1
+        BRNE    ??ISR_TIMER1_CAPT_2
+//  416       {
+//  417         switch (OS1_VARS.State)
+        LDS     R16, (OS1_VARS + 2)
+        SUBI    R16, 0
+        BREQ    ??ISR_TIMER1_CAPT_3
+        SUBI    R16, 2
+        BRCS    ??ISR_TIMER1_CAPT_4
+        SUBI    R16, 3
+        BRCS    ??ISR_TIMER1_CAPT_3
+        SUBI    R16, 0
+        BREQ    ??ISR_TIMER1_CAPT_5
+??ISR_TIMER1_CAPT_4:
+        RJMP    ??ISR_TIMER1_CAPT_1
+//  418         {
+//  419           case STATE_OS1_IDLE:
+//  420             Reset_OS1;
+??ISR_TIMER1_CAPT_3:
+        STS     (OS1_VARS + 14), R17
+??ISR_TIMER1_CAPT_6:
+        STS     (OS1_VARS + 2), R17
+        STS     OS1_VARS, R17
+        STS     (OS1_VARS + 1), R17
+        RJMP    ??ISR_TIMER1_CAPT_1
+//  421             break;
+//  422           case STATE_OS1_SYNC1:
+//  423             Reset_OS1;
+//  424             break;            
+//  425           case STATE_OS1_SYNC2:
+//  426             Reset_OS1;
+//  427             break;            
+//  428           case STATE_OS1_SYNC3:
+//  429             Reset_OS1;
+//  430             break;                        
+//  431           case STATE_OS1_DATA:
+//  432             // If OS1 decoder state is "Data reception" then interpretate 1.5 ms high pulse as OS1 narrow high data pulse
+//  433             if ICP_IS_FALLING
+??ISR_TIMER1_CAPT_5:
+        IN      R16, 0x2E
+        SBRC    R16, 6
+        RJMP    ??ISR_TIMER1_CAPT_3
+//  434             {
+//  435               if (OS1_VARS.LastBit == 1)
+        LDS     R16, (OS1_VARS + 3)
+        CPI     R16, 1
+        BRNE    ??ISR_TIMER1_CAPT_7
+//  436               {
+//  437                 ArrBitDefine(OS1_VARS.BitPosition, 1, Stream);
+        LDI     R26, LOW(OS1_VARS)
+        LDI     R27, (OS1_VARS) >> 8
+        LDS     R20, OS1_VARS
+        MOV     R16, R20
+        LSR     R16
+        LSR     R16
+        LSR     R16
+        ADD     R26, R16
+        ADC     R27, R17
+        ADIW    R27:R26, 15
+        ANDI    R20, 0x07
+        LDI     R16, 1
+        RCALL   ?C_SHL_L01
+        LD      R17, X
+        OR      R17, R16
+        ST      X, R17
+//  438                 #ifdef DEBUG_PRINT1
+//  439 //                  UART_TX('1');
+//  440                 #endif  
+//  441                 OS1_VARS.LastBit=1;
+        LDI     R16, 1
+        STS     (OS1_VARS + 3), R16
+//  442                 if (OS1_VARS.BitPosition++>127) OS1_VARS.BitPosition=0;
+        LDS     R16, OS1_VARS
+        MOV     R17, R16
+        INC     R17
+        STS     OS1_VARS, R17
+        CPI     R16, 128
+        BRCC    $+2+2
+        RJMP    ??ISR_TIMER1_CAPT_1
+??ISR_TIMER1_CAPT_8:
+        LDI     R16, 0
+        STS     OS1_VARS, R16
+        RJMP    ??ISR_TIMER1_CAPT_1
+//  443               }
+//  444               else __no_operation(); // Just skip this transition              
+??ISR_TIMER1_CAPT_7:
+        NOP
+        RJMP    ??ISR_TIMER1_CAPT_1
+//  445             }
+//  446             else //ICP_IS_RISING
+//  447             {
+//  448               Reset_OS1;
+//  449             }
+//  450             break;           
+//  451         }                                
+//  452       }
+//  453       else Stream_Error;
+??ISR_TIMER1_CAPT_2:
+        STS     (OS1_VARS + 14), R17
+??ISR_TIMER1_CAPT_9:
+        STS     (OS1_VARS + 2), R17
+        STS     OS1_VARS, R17
+        STS     (OS1_VARS + 1), R17
+        STS     (OS1_VARS + 6), R17
+        STS     (OS1_VARS + 4), R17
+        STS     (OS1_VARS + 5), R17
+        STS     (OS1_VARS + 10), R17
+        STS     (OS1_VARS + 8), R17
+        STS     (OS1_VARS + 9), R17
+        CBI     0x12, 0x05
+        STS     debug_index, R17
+        RJMP    ??ISR_TIMER1_CAPT_1
+//  454     }
+//  455     else if ((InRange(period, SetTimer_us(1293), 250))&&(OS1_VARS.State==STATE_OS1_DATA))
+??ISR_TIMER1_CAPT_0:
+        CPI     R24, 21
+        LDI     R16, 11
+        CPC     R25, R16
+        BRCC    ??ISR_TIMER1_CAPT_10
+        CPI     R24, 32
+        LDI     R16, 9
+        CPC     R25, R16
+        BRCC    $+2+2
+        RJMP    ??ISR_TIMER1_CAPT_11
+        LDS     R16, (OS1_VARS + 2)
+        CPI     R16, 5
+        BREQ    $+2+2
+        RJMP    ??ISR_TIMER1_CAPT_12
+//  456     { 
+//  457            if ICP_IS_RISING
+        IN      R16, 0x2E
+        SBRS    R16, 6
+        RJMP    ??ISR_TIMER1_CAPT_13
+//  458             {
+//  459               if (OS1_VARS.LastBit==0)
+        LDS     R16, (OS1_VARS + 3)
+        TST     R16
+        BRNE    ??ISR_TIMER1_CAPT_7
+//  460               {
+//  461                   ArrBitDefine(OS1_VARS.BitPosition, 0, Stream);
+        LDI     R26, LOW(OS1_VARS)
+        LDI     R27, (OS1_VARS) >> 8
+        LDS     R20, OS1_VARS
+        MOV     R16, R20
+        LSR     R16
+        LSR     R16
+        LSR     R16
+        ADD     R26, R16
+        ADC     R27, R17
+        ADIW    R27:R26, 15
+        ANDI    R20, 0x07
+        LDI     R16, 1
+        RCALL   ?C_SHL_L01
+        COM     R16
+        LD      R17, X
+        AND     R17, R16
+        ST      X, R17
+//  462                   #ifdef DEBUG_PRINT1
+//  463 //                    UART_TX('0');
+//  464                   #endif 
+//  465                    if (OS1_VARS.BitPosition++>127) OS1_VARS.BitPosition=0;
+??ISR_TIMER1_CAPT_14:
+        LDS     R16, OS1_VARS
+        MOV     R17, R16
+        INC     R17
+        STS     OS1_VARS, R17
+        CPI     R16, 128
+        BRCC    $+2+2
+        RJMP    ??ISR_TIMER1_CAPT_1
+        RJMP    ??ISR_TIMER1_CAPT_8
+//  466                }
+//  467              else  __no_operation(); // Just skip this pulse
+//  468             }
+//  469            else Reset_OS1;
+??ISR_TIMER1_CAPT_13:
+        LDS     R16, (OS1_VARS + 14)
+        CPI     R16, 1
+        BRNE    ??ISR_TIMER1_CAPT_15
+        STS     (OS1_VARS + 14), R17
+??ISR_TIMER1_CAPT_15:
+        RJMP    ??ISR_TIMER1_CAPT_6
+//  470     }
+//  471    //3.0 ms pulse handler
+//  472    else if InRange(period,  SetTimer_us(2921), 400)
+??ISR_TIMER1_CAPT_10:
+        CPI     R24, 99
+        LDI     R16, 24
+        CPC     R25, R16
+        BRCS    $+2+2
+        RJMP    ??ISR_TIMER1_CAPT_16
+        CPI     R24, 66
+        LDI     R16, 21
+        CPC     R25, R16
+        BRCC    $+2+2
+        RJMP    ??ISR_TIMER1_CAPT_12
+//  473     {  
+//  474      if (STATE_DECODER==STATE_DECODER_IDLE)
+        LDS     R16, (OS1_VARS + 14)
+        TST     R16
+        BREQ    ??ISR_TIMER1_CAPT_15
+//  475       {      
+//  476         Reset_OS1;
+//  477       }
+//  478      else if (STATE_DECODER==STATE_DECODER_OS1)
+        CPI     R16, 1
+        BREQ    $+2+2
+        RJMP    ??ISR_TIMER1_CAPT_2
+//  479      {
+//  480        switch (OS1_VARS.State)
+        LDS     R16, (OS1_VARS + 2)
+        SUBI    R16, 2
+        SUBI    R16, 3
+        BRCC    $+2+2
+        RJMP    ??ISR_TIMER1_CAPT_3
+        SUBI    R16, 0
+        BREQ    $+2+2
+        RJMP    ??ISR_TIMER1_CAPT_1
+//  481        {
+//  482        case STATE_OS1_SYNC1:
+//  483          Reset_OS1;
+//  484          break;
+//  485        case STATE_OS1_SYNC2:
+//  486          Reset_OS1;
+//  487          break;         
+//  488        case STATE_OS1_SYNC3:         
+//  489          Reset_OS1;
+//  490          break;         
+//  491        case STATE_OS1_DATA:         
+//  492        if ICP_IS_FALLING
+        IN      R16, 0x2E
+        SBRC    R16, 6
+        RJMP    ??ISR_TIMER1_CAPT_17
+//  493        {
+//  494        // If OS1 decoder state is "Data reception" then interpretate 3 ms high pulse as OS1 wide high data pulse
+//  495         if (OS1_VARS.LastBit==0)
+        LDS     R16, (OS1_VARS + 3)
+        TST     R16
+        BREQ    $+2+2
+        RJMP    ??ISR_TIMER1_CAPT_3
+//  496         {
+//  497           ArrBitDefine(OS1_VARS.BitPosition, 1, Stream);
+        LDI     R26, LOW(OS1_VARS)
+        LDI     R27, (OS1_VARS) >> 8
+        LDS     R20, OS1_VARS
+        MOV     R16, R20
+        LSR     R16
+        LSR     R16
+        LSR     R16
+        ADD     R26, R16
+        ADC     R27, R17
+        ADIW    R27:R26, 15
+        ANDI    R20, 0x07
+        LDI     R16, 1
+        RCALL   ?C_SHL_L01
+        LD      R17, X
+        OR      R17, R16
+        ST      X, R17
+//  498           OS1_VARS.LastBit=1;
+        LDI     R16, 1
+??ISR_TIMER1_CAPT_18:
+        STS     (OS1_VARS + 3), R16
+//  499           #ifdef DEBUG_PRINT1
+//  500 //            UART_TX('1');
+//  501           #endif
+//  502           if (OS1_VARS.BitPosition++>127) OS1_VARS.BitPosition=0;
+        RJMP    ??ISR_TIMER1_CAPT_14
+//  503         }
+//  504         else Reset_OS1; //Error in OS1 manchester stream         
+//  505        }
+//  506        else //ICP_IS_RISING
+//  507        {
+//  508         // If OS1 decoder state is "Data reception" then interpretate 3 ms low pulse as OS1 wide low data pulse
+//  509         if (OS1_VARS.LastBit==1)
+??ISR_TIMER1_CAPT_17:
+        LDS     R16, (OS1_VARS + 3)
+        CPI     R16, 1
+        BREQ    $+2+2
+        RJMP    ??ISR_TIMER1_CAPT_3
+//  510         {
+//  511           ArrBitDefine(OS1_VARS.BitPosition, 0, Stream);
+        LDI     R26, LOW(OS1_VARS)
+        LDI     R27, (OS1_VARS) >> 8
+        LDS     R20, OS1_VARS
+        MOV     R16, R20
+        LSR     R16
+        LSR     R16
+        LSR     R16
+        ADD     R26, R16
+        ADC     R27, R17
+        ADIW    R27:R26, 15
+        ANDI    R20, 0x07
+        LDI     R16, 1
+        RCALL   ?C_SHL_L01
+        COM     R16
+        LD      R17, X
+        AND     R17, R16
+        ST      X, R17
+//  512           OS1_VARS.LastBit=0;
+        LDI     R16, 0
+        RJMP    ??ISR_TIMER1_CAPT_18
+//  513           #ifdef DEBUG_PRINT1
+//  514 //            UART_TX('0');
+//  515           #endif  
+//  516           if (OS1_VARS.BitPosition++>127) OS1_VARS.BitPosition=0;
+//  517         }
+//  518         else Reset_OS1; //Error in OS1 manchester stream 
+//  519        }         
+//  520         break;                  
+//  521        }       
+//  522      }
+//  523      else Stream_Error;       
+//  524     }
+//  525     //4.31 ms pulse handler (First sync pulse for OS1.0 protocol)
+//  526     else if InRange(period, SetTimer_us(4310), 350)
+??ISR_TIMER1_CAPT_16:
+        CPI     R24, 11
+        LDI     R16, 35
+        CPC     R25, R16
+        BRCC    ??ISR_TIMER1_CAPT_19
+        CPI     R24, 78
+        LDI     R16, 32
+        CPC     R25, R16
+        BRCC    $+2+2
+        RJMP    ??ISR_TIMER1_CAPT_12
+//  527     {
+//  528       Reset_OS2;Reset_OS3;
+        LDS     R16, (OS1_VARS + 14)
+        CPI     R16, 2
+        BRNE    ??ISR_TIMER1_CAPT_20
+        STS     (OS1_VARS + 14), R17
+??ISR_TIMER1_CAPT_20:
+        STS     (OS1_VARS + 6), R17
+        STS     (OS1_VARS + 4), R17
+        STS     (OS1_VARS + 5), R17
+        LDS     R16, (OS1_VARS + 14)
+        CPI     R16, 3
+        BRNE    ??ISR_TIMER1_CAPT_21
+        STS     (OS1_VARS + 14), R17
+??ISR_TIMER1_CAPT_21:
+        STS     (OS1_VARS + 10), R17
+        STS     (OS1_VARS + 8), R17
+        STS     (OS1_VARS + 9), R17
+//  529       if (STATE_DECODER==STATE_DECODER_IDLE)
+        LDS     R16, (OS1_VARS + 14)
+        TST     R16
+        BRNE    ??ISR_TIMER1_CAPT_22
+//  530       {
+//  531         if ICP_IS_RISING
+        IN      R16, 0x2E
+        SBRS    R16, 6
+        RJMP    ??ISR_TIMER1_CAPT_6
+//  532         {
+//  533           if (OS1_VARS.State==STATE_OS1_IDLE)
+        LDS     R16, (OS1_VARS + 2)
+        TST     R16
+        BREQ    $+2+2
+        RJMP    ??ISR_TIMER1_CAPT_6
+//  534           {
+//  535             OS1_VARS.State=STATE_OS1_SYNC2;
+        LDI     R16, 3
+        STS     (OS1_VARS + 2), R16
+//  536             STATE_DECODER=STATE_DECODER_OS1;
+        LDI     R16, 1
+??ISR_TIMER1_CAPT_23:
+        STS     (OS1_VARS + 14), R16
+        RJMP    ??ISR_TIMER1_CAPT_1
+//  537             #ifdef DEBUG_PRINT1
+//  538 //            print_fstr("\r\nS12");             
+//  539             #endif            
+//  540           }
+//  541           else Reset_OS1;
+//  542         }
+//  543         else
+//  544         {
+//  545           Reset_OS1;
+//  546         }
+//  547       }
+//  548       else Stream_Error;
+??ISR_TIMER1_CAPT_22:
+        RJMP    ??ISR_TIMER1_CAPT_2
+//  549     }
+//  550     //5.5 ms pulse handler (second sync pulse for OS1.0 protocol)
+//  551     else if InRange(period, SetTimer_us(5630), 250)
+??ISR_TIMER1_CAPT_19:
+        CPI     R24, 247
+        LDI     R16, 44
+        CPC     R25, R16
+        BRCC    ??ISR_TIMER1_CAPT_24
+        CPI     R24, 2
+        LDI     R16, 43
+        CPC     R25, R16
+        BRCS    ??ISR_TIMER1_CAPT_24
+//  552      {
+//  553         Reset_OS2;Reset_OS3;       
+        LDS     R16, (OS1_VARS + 14)
+        CPI     R16, 2
+        BRNE    ??ISR_TIMER1_CAPT_25
+        STS     (OS1_VARS + 14), R17
+??ISR_TIMER1_CAPT_25:
+        STS     (OS1_VARS + 6), R17
+        STS     (OS1_VARS + 4), R17
+        STS     (OS1_VARS + 5), R17
+        LDS     R16, (OS1_VARS + 14)
+        CPI     R16, 3
+        BRNE    ??ISR_TIMER1_CAPT_26
+        STS     (OS1_VARS + 14), R17
+??ISR_TIMER1_CAPT_26:
+        STS     (OS1_VARS + 10), R17
+        STS     (OS1_VARS + 8), R17
+        STS     (OS1_VARS + 9), R17
+//  554        if (STATE_DECODER==STATE_DECODER_OS1)
+        LDS     R16, (OS1_VARS + 14)
+        CPI     R16, 1
+        BRNE    ??ISR_TIMER1_CAPT_27
+//  555        {
+//  556          if ICP_IS_FALLING
+        IN      R16, 0x2E
+        SBRC    R16, 6
+        RJMP    ??ISR_TIMER1_CAPT_3
+//  557          {
+//  558           if (OS1_VARS.State==STATE_OS1_SYNC2)
+        LDS     R16, (OS1_VARS + 2)
+        CPI     R16, 3
+        BREQ    $+2+2
+        RJMP    ??ISR_TIMER1_CAPT_3
+//  559           {
+//  560             OS1_VARS.State=STATE_OS1_SYNC3;
+        LDI     R16, 4
+        STS     (OS1_VARS + 2), R16
+        RJMP    ??ISR_TIMER1_CAPT_1
+//  561             #ifdef DEBUG_PRINT1
+//  562  //           print_fstr("\r\nS13");             
+//  563             #endif            
+//  564           }
+//  565           else Reset_OS1;
+//  566          }
+//  567          else 
+//  568          {
+//  569            Reset_OS1;
+//  570          }
+//  571        }
+//  572        else Stream_Error
+??ISR_TIMER1_CAPT_27:
+        RJMP    ??ISR_TIMER1_CAPT_2
+//  573     }
+//  574     //5.31 ms pulse handler (Third short sync pulse for OS1.0 protocol)
+//  575     else if InRange (period, SetTimer_us(5310), 250)
+??ISR_TIMER1_CAPT_24:
+        CPI     R24, 119
+        LDI     R16, 42
+        CPC     R25, R16
+        BRCC    ??ISR_TIMER1_CAPT_28
+        CPI     R24, 130
+        LDI     R16, 40
+        CPC     R25, R16
+        BRCC    $+2+2
+        RJMP    ??ISR_TIMER1_CAPT_12
+//  576     {
+//  577         Reset_OS2;Reset_OS3;      
+        LDS     R16, (OS1_VARS + 14)
+        CPI     R16, 2
+        BRNE    ??ISR_TIMER1_CAPT_29
+        STS     (OS1_VARS + 14), R17
+??ISR_TIMER1_CAPT_29:
+        STS     (OS1_VARS + 6), R17
+        STS     (OS1_VARS + 4), R17
+        STS     (OS1_VARS + 5), R17
+        LDS     R16, (OS1_VARS + 14)
+        CPI     R16, 3
+        BRNE    ??ISR_TIMER1_CAPT_30
+        STS     (OS1_VARS + 14), R17
+??ISR_TIMER1_CAPT_30:
+        STS     (OS1_VARS + 10), R17
+        STS     (OS1_VARS + 8), R17
+        STS     (OS1_VARS + 9), R17
+//  578       if (STATE_DECODER==STATE_DECODER_OS1)
+        LDS     R16, (OS1_VARS + 14)
+        CPI     R16, 1
+        BRNE    ??ISR_TIMER1_CAPT_31
+//  579       {
+//  580        if ICP_IS_RISING
+        IN      R16, 0x2E
+        SBRS    R16, 6
+        RJMP    ??ISR_TIMER1_CAPT_3
+//  581        {
+//  582          if (OS1_VARS.State==STATE_OS1_SYNC3)
+        LDS     R16, (OS1_VARS + 2)
+        CPI     R16, 4
+        BREQ    $+2+2
+        RJMP    ??ISR_TIMER1_CAPT_3
+//  583           {
+//  584             OS1_VARS.State=STATE_OS1_DATA;
+        LDI     R16, 5
+        STS     (OS1_VARS + 2), R16
+//  585             OS1_VARS.BitPosition=0; 
+        STS     OS1_VARS, R17
+//  586 //            ArrBitDefine(OS1_VARS.BitPosition, 1, Stream);
+//  587             OS1_VARS.LastBit=1;
+        LDI     R16, 1
+        STS     (OS1_VARS + 3), R16
+//  588 //            OS1_VARS.BitPosition++;   
+//  589             #ifdef DEBUG_PRINT1
+//  590             print_fstr("\r\nD1S");             
+        LDI     R16, LOW(`?<Constant "\\r\\nD1S">`)
+        LDI     R17, (`?<Constant "\\r\\nD1S">`) >> 8
+??ISR_TIMER1_CAPT_32:
+        RCALL   print_fstr
+        RJMP    ??ISR_TIMER1_CAPT_1
+//  591             #endif            
+//  592           }
+//  593          else Reset_OS1;
+//  594        }
+//  595        else Reset_OS1;
+//  596       }
+//  597     else  Stream_Error;    
+??ISR_TIMER1_CAPT_31:
+        RJMP    ??ISR_TIMER1_CAPT_2
+//  598     }
+//  599     //6.86 ms pulse handler (Third long sync pulse for OS1.0 protocol)
+//  600     else if InRange (period, SetTimer_us(6750), 350)      
+??ISR_TIMER1_CAPT_28:
+        CPI     R24, 27
+        LDI     R16, 54
+        CPC     R25, R16
+        BRCS    $+2+2
+        RJMP    ??ISR_TIMER1_CAPT_12
+        CPI     R24, 94
+        LDI     R16, 51
+        CPC     R25, R16
+        BRCC    $+2+2
+        RJMP    ??ISR_TIMER1_CAPT_12
+//  601     {
+//  602               Reset_OS2;Reset_OS3;
+        LDS     R16, (OS1_VARS + 14)
+        CPI     R16, 2
+        BRNE    ??ISR_TIMER1_CAPT_33
+        STS     (OS1_VARS + 14), R17
+??ISR_TIMER1_CAPT_33:
+        STS     (OS1_VARS + 6), R17
+        STS     (OS1_VARS + 4), R17
+        STS     (OS1_VARS + 5), R17
+        LDS     R16, (OS1_VARS + 14)
+        CPI     R16, 3
+        BRNE    ??ISR_TIMER1_CAPT_34
+        STS     (OS1_VARS + 14), R17
+??ISR_TIMER1_CAPT_34:
+        STS     (OS1_VARS + 10), R17
+        STS     (OS1_VARS + 8), R17
+        STS     (OS1_VARS + 9), R17
+//  603        if (STATE_DECODER==STATE_DECODER_OS1)
+        LDS     R16, (OS1_VARS + 14)
+        CPI     R16, 1
+        BRNE    ??ISR_TIMER1_CAPT_35
+//  604        {
+//  605         if ICP_IS_RISING
+        IN      R16, 0x2E
+        SBRS    R16, 6
+        RJMP    ??ISR_TIMER1_CAPT_3
+//  606         {
+//  607           if (OS1_VARS.State==STATE_OS1_SYNC3)
+        LDS     R16, (OS1_VARS + 2)
+        CPI     R16, 4
+        BREQ    $+2+2
+        RJMP    ??ISR_TIMER1_CAPT_3
+//  608             {
+//  609               OS1_VARS.State=STATE_OS1_DATA;          
+        LDI     R16, 5
+        STS     (OS1_VARS + 2), R16
+//  610               OS1_VARS.BitPosition=0; 
+        STS     OS1_VARS, R17
+//  611 //              ArrBitDefine(OS1_VARS.BitPosition, 0, Stream);          
+//  612               OS1_VARS.LastBit=0;
+        STS     (OS1_VARS + 3), R17
+//  613 //              OS1_VARS.BitPosition++;          
+//  614               #ifdef DEBUG_PRINT1
+//  615               print_fstr("\r\nD1L");             
+        LDI     R16, LOW((`?<Constant "\\r\\nD1S">` + 6))
+        LDI     R17, HIGH((`?<Constant "\\r\\nD1S">` + 6))
+        RJMP    ??ISR_TIMER1_CAPT_32
+//  616               #endif                            
+//  617             }      
+//  618           else Reset_OS1;
+//  619         }
+//  620         else Reset_OS1;
+//  621        }
+//  622        else Stream_Error;
+??ISR_TIMER1_CAPT_35:
+        RJMP    ??ISR_TIMER1_CAPT_2
+//  623     }  
+//  624   /*1.0 ms pulse handler (OS2.1 preambule or wide data pulse, OS3 high wide pulse)*/
+//  625    else if InRange (period, us1000, 325)
+??ISR_TIMER1_CAPT_11:
+        CPI     R24, 22
+        CPC     R25, R16
+        BRCS    $+2+2
+        RJMP    ??ISR_TIMER1_CAPT_36
+        CPI     R24, 139
+        LDI     R16, 6
+        CPC     R25, R16
+        BRCC    $+2+2
+        RJMP    ??ISR_TIMER1_CAPT_36
+//  626     {
+//  627          Reset_OS1; // set OS1 state as idle
+        LDS     R16, (OS1_VARS + 14)
+        CPI     R16, 1
+        BRNE    ??ISR_TIMER1_CAPT_37
+        STS     (OS1_VARS + 14), R17
+??ISR_TIMER1_CAPT_37:
+        STS     (OS1_VARS + 2), R17
+        STS     OS1_VARS, R17
+        STS     (OS1_VARS + 1), R17
+//  628          if (STATE_DECODER==STATE_DECODER_IDLE)
+        LDS     R16, (OS1_VARS + 14)
+        TST     R16
+        BRNE    ??ISR_TIMER1_CAPT_38
+//  629          { // OS2.1 preamble high pulse _|--|_
+//  630            Reset_OS3;
+        LDI     R30, LOW(OS1_VARS)
+        LDI     R31, (OS1_VARS) >> 8
+        STD     Z+10, R17
+        STD     Z+8, R17
+        STD     Z+9, R17
+//  631            OS2_VARS.BitPosition++; // Increment OS2 Preamble bits counter
+        LDD     R16, Z+4
+        INC     R16
+        STD     Z+4, R16
+//  632            if (OS2_VARS.BitPosition>=24) 
+        CPI     R16, 24
+        BRCC    $+2+2
+        RJMP    ??ISR_TIMER1_CAPT_1
+//  633             {
+//  634                #ifdef DEBUG_PRINT2_1
+//  635                   print_fstr("\r\nS2");
+        LDI     R16, LOW((`?<Constant "\\r\\nD1S">` + 12))
+        LDI     R17, HIGH((`?<Constant "\\r\\nD1S">` + 12))
+        RCALL   print_fstr
+//  636                #endif  
+//  637                OS2_VARS.State=STATE_OS2_SYNC;
+        LDI     R16, 2
+        STS     (OS1_VARS + 6), R16
+//  638                OS2_VARS.BitPosition=0;
+        LDI     R16, 0
+        STS     (OS1_VARS + 4), R16
+//  639                STATE_DECODER=STATE_DECODER_OS2;
+        LDI     R16, 2
+        RJMP    ??ISR_TIMER1_CAPT_23
+//  640             }
+//  641          }
+//  642          else if (STATE_DECODER==STATE_DECODER_OS2)
+??ISR_TIMER1_CAPT_38:
+        CPI     R16, 2
+        BREQ    $+2+2
+        RJMP    ??ISR_TIMER1_CAPT_39
+//  643          {
+//  644           switch (OS2_VARS.State)
+        LDS     R16, (OS1_VARS + 6)
+        SUBI    R16, 2
+        BREQ    ??ISR_TIMER1_CAPT_40
+        DEC     R16
+        BREQ    ??ISR_TIMER1_CAPT_41
+        RJMP    ??ISR_TIMER1_CAPT_1
+//  645           {
+//  646            case STATE_OS2_SYNC: 
+//  647              #ifdef  preamlbe_led 
+//  648              if ICP_IS_FALLING
+??ISR_TIMER1_CAPT_40:
+        IN      R16, 0x2E
+        SBRC    R16, 6
+        RJMP    ??ISR_TIMER1_CAPT_42
+//  649              {
+//  650                LED_OFF;
+??ISR_TIMER1_CAPT_43:
+        CBI     0x12, 0x05
+        RJMP    ??ISR_TIMER1_CAPT_1
+//  651              } else LED_ON;
+??ISR_TIMER1_CAPT_42:
+        SBI     0x12, 0x05
+        RJMP    ??ISR_TIMER1_CAPT_1
+//  652              #endif
+//  653              break;
+//  654            case STATE_OS2_DATA:
+//  655               if ICP_IS_FALLING
+??ISR_TIMER1_CAPT_41:
+        IN      R16, 0x2E
+        SBRC    R16, 6
+        RJMP    ??ISR_TIMER1_CAPT_44
+//  656                {
+//  657                  if (OS2_VARS.LastBit==0)
+        LDS     R16, (OS1_VARS + 7)
+        TST     R16
+        BRNE    ??ISR_TIMER1_CAPT_45
+//  658                  {
+//  659                     UREG BitPos=OS2_VARS.BitPosition;
+??ISR_TIMER1_CAPT_46:
+        LDS     R18, (OS1_VARS + 4)
+//  660                     if (BitPos&0x01) ArrBitDefine(BitPos>>1, 1, Stream);
+        BST     R18, 0
+        BRTC    ??ISR_TIMER1_CAPT_47
+        MOV     R20, R18
+        LSR     R20
+        LDI     R30, LOW((OS1_VARS + 15))
+        LDI     R31, HIGH((OS1_VARS + 15))
+        MOV     R16, R20
+        LSR     R16
+        LSR     R16
+        LSR     R16
+        ADD     R30, R16
+        ADC     R31, R17
+        ANDI    R20, 0x07
+        LDI     R16, 1
+        RCALL   ?C_SHL_L01
+        LD      R17, Z
+        OR      R17, R16
+        ST      Z, R17
+//  661     //              UART_TX('1');
+//  662                     OS2_VARS.LastBit=1;
+??ISR_TIMER1_CAPT_47:
+        LDI     R16, 1
+        STS     (OS1_VARS + 7), R16
+//  663                     if (BitPos++>254) BitPos=0;
+        MOV     R16, R18
+        INC     R18
+        CPI     R16, 255
+        BRNE    ??ISR_TIMER1_CAPT_48
+        LDI     R18, 0
+//  664                     OS2_VARS.BitPosition=BitPos;           
+??ISR_TIMER1_CAPT_48:
+        STS     (OS1_VARS + 4), R18
+//  665                     #ifdef bit_led
+//  666                        LED_ON;
+        RJMP    ??ISR_TIMER1_CAPT_42
+//  667                     #endif  
+//  668                  }
+//  669                  else Reset_OS2; //Error in 2.1 stream
+??ISR_TIMER1_CAPT_45:
+        STS     (OS1_VARS + 14), R17
+        STS     (OS1_VARS + 6), R17
+        STS     (OS1_VARS + 4), R17
+        STS     (OS1_VARS + 5), R17
+        RJMP    ??ISR_TIMER1_CAPT_1
+//  670                }
+//  671              else //ICP_IS_RISING
+//  672              {
+//  673                if (OS2_VARS.LastBit==1)
+??ISR_TIMER1_CAPT_44:
+        LDS     R16, (OS1_VARS + 7)
+        CPI     R16, 1
+        BRNE    ??ISR_TIMER1_CAPT_45
+//  674                {
+//  675                  UREG BitPos=OS2_VARS.BitPosition;           
+??ISR_TIMER1_CAPT_49:
+        LDS     R18, (OS1_VARS + 4)
+//  676                  if (BitPos&0x01) ArrBitDefine(BitPos>>1, 0, Stream);
+        BST     R18, 0
+        BRTC    ??ISR_TIMER1_CAPT_50
+        MOV     R20, R18
+        LSR     R20
+        LDI     R30, LOW((OS1_VARS + 15))
+        LDI     R31, HIGH((OS1_VARS + 15))
+        MOV     R16, R20
+        LSR     R16
+        LSR     R16
+        LSR     R16
+        ADD     R30, R16
+        ADC     R31, R17
+        ANDI    R20, 0x07
+        LDI     R16, 1
+        RCALL   ?C_SHL_L01
+        COM     R16
+        LD      R17, Z
+        AND     R17, R16
+        ST      Z, R17
+//  677  //                UART_TX('0');
+//  678                  OS2_VARS.LastBit=0;
+??ISR_TIMER1_CAPT_50:
+        LDI     R16, 0
+        STS     (OS1_VARS + 7), R16
+//  679                  if (BitPos++>254) BitPos=0;
+        MOV     R16, R18
+        INC     R18
+        CPI     R16, 255
+        BRNE    ??ISR_TIMER1_CAPT_51
+        LDI     R18, 0
+//  680                  OS2_VARS.BitPosition=BitPos;
+??ISR_TIMER1_CAPT_51:
+        STS     (OS1_VARS + 4), R18
+//  681                  #ifdef bit_led
+//  682                    LED_OFF;
+        RJMP    ??ISR_TIMER1_CAPT_43
+//  683                  #endif  
+//  684                }
+//  685                else Reset_OS2; //Error in OS2.1 Stream                             
+//  686              }
+//  687              break; 
+//  688             }
+//  689          }
+//  690          else if (STATE_DECODER==STATE_DECODER_OS3)
+??ISR_TIMER1_CAPT_39:
+        CPI     R16, 3
+        BREQ    $+2+2
+        RJMP    ??ISR_TIMER1_CAPT_1
+//  691          {
+//  692            switch (OS3_VARS.State)
+        LDS     R16, (OS1_VARS + 10)
+        SUBI    R16, 2
+        BREQ    ??ISR_TIMER1_CAPT_52
+        DEC     R16
+        BREQ    ??ISR_TIMER1_CAPT_53
+        RJMP    ??ISR_TIMER1_CAPT_1
+//  693            {
+//  694              case STATE_OS3_SYNC:
+//  695                if ICP_IS_RISING
+??ISR_TIMER1_CAPT_52:
+        IN      R16, 0x2E
+        SBRS    R16, 6
+        RJMP    ??ISR_TIMER1_CAPT_53
+//  696                {
+//  697                   Reset_OS2;
+        STS     (OS1_VARS + 6), R17
+        STS     (OS1_VARS + 4), R17
+        STS     (OS1_VARS + 5), R17
+//  698                   #ifdef start_bit_led 
+//  699                     LED_ON;
+        SBI     0x12, 0x05
+//  700                   #endif
+//  701                   #ifdef DEBUG_PRINT3
+//  702                     print_fstr("\r\nD3");   
+        LDI     R16, LOW((`?<Constant "\\r\\nD1S">` + 17))
+        LDI     R17, HIGH((`?<Constant "\\r\\nD1S">` + 17))
+        RCALL   print_fstr
+//  703                   #endif  
+//  704   //              print_hexword(newICP);  
+//  705                   OS3_VARS.State=STATE_OS3_DATA;  // OS3 decoder in data mode
+        LDI     R16, 3
+        STS     (OS1_VARS + 10), R16
+//  706                   OS3_VARS.LastBit=1;
+        LDI     R16, 1
+        STS     (OS1_VARS + 11), R16
+//  707                   OS3_VARS.BitPosition=0;
+        LDI     R16, 0
+        STS     (OS1_VARS + 8), R16
+//  708                }
+//  709               case STATE_OS3_DATA:
+//  710                 if ICP_IS_FALLING  //OS3 high wide data pulse _|--|_          
+??ISR_TIMER1_CAPT_53:
+        IN      R16, 0x2E
+        SBRC    R16, 6
+        RJMP    ??ISR_TIMER1_CAPT_54
+//  711                 {
+//  712                   if (OS3_VARS.LastBit==0) //_|--|_ (0,1)
+        LDS     R16, (OS1_VARS + 11)
+        TST     R16
+        BRNE    ??ISR_TIMER1_CAPT_55
+//  713                     {
+//  714                         ArrBitDefine(OS3_VARS.BitPosition, 1, Stream);              
+        LDI     R26, LOW(OS1_VARS)
+        LDI     R27, (OS1_VARS) >> 8
+        LDS     R20, (OS1_VARS + 8)
+        MOV     R16, R20
+        LSR     R16
+        LSR     R16
+        LSR     R16
+        LDI     R17, 0
+        ADD     R26, R16
+        ADC     R27, R17
+        ADIW    R27:R26, 15
+        ANDI    R20, 0x07
+        LDI     R16, 1
+        RCALL   ?C_SHL_L01
+        LD      R17, X
+        OR      R17, R16
+        ST      X, R17
+//  715                         #ifdef bit_led
+//  716                           LED_ON;
+        SBI     0x12, 0x05
+//  717                         #endif  
+//  718                         OS3_VARS.LastBit=1;              
+        LDI     R16, 1
+        STS     (OS1_VARS + 11), R16
+//  719                         if (OS3_VARS.BitPosition++>127) OS3_VARS.BitPosition=0;
+        LDS     R16, (OS1_VARS + 8)
+        MOV     R17, R16
+        INC     R17
+        STS     (OS1_VARS + 8), R17
+        CPI     R16, 128
+        BRCC    $+2+2
+        RJMP    ??ISR_TIMER1_CAPT_1
+??ISR_TIMER1_CAPT_56:
+        LDI     R16, 0
+        STS     (OS1_VARS + 8), R16
+        RJMP    ??ISR_TIMER1_CAPT_1
+//  720                     }
+//  721                   else Reset_OS3;  // Error in the OS3 manchester stream |-|_|--|_
+??ISR_TIMER1_CAPT_55:
+        LDS     R16, (OS1_VARS + 14)
+        CPI     R16, 3
+        BRNE    ??ISR_TIMER1_CAPT_57
+        LDI     R16, 0
+        STS     (OS1_VARS + 14), R16
+??ISR_TIMER1_CAPT_57:
+        LDI     R16, 0
+        STS     (OS1_VARS + 10), R16
+        STS     (OS1_VARS + 8), R16
+        STS     (OS1_VARS + 9), R16
+        RJMP    ??ISR_TIMER1_CAPT_1
+//  722                 }
+//  723                 else // ICP_IS_RISING //-|__|-
+//  724                 {
+//  725                   if (OS3_VARS.LastBit==1)
+??ISR_TIMER1_CAPT_54:
+        LDS     R16, (OS1_VARS + 11)
+        CPI     R16, 1
+        BRNE    ??ISR_TIMER1_CAPT_55
+//  726                   {
+//  727                     ArrBitDefine(OS3_VARS.BitPosition, 0, Stream);
+        LDI     R26, LOW(OS1_VARS)
+        LDI     R27, (OS1_VARS) >> 8
+        LDS     R20, (OS1_VARS + 8)
+        MOV     R16, R20
+        LSR     R16
+        LSR     R16
+        LSR     R16
+        LDI     R17, 0
+        ADD     R26, R16
+        ADC     R27, R17
+        ADIW    R27:R26, 15
+        ANDI    R20, 0x07
+        LDI     R16, 1
+        RCALL   ?C_SHL_L01
+        COM     R16
+        LD      R17, X
+        AND     R17, R16
+        ST      X, R17
+//  728                     OS3_VARS.LastBit=0;
+        LDI     R16, 0
+        STS     (OS1_VARS + 11), R16
+//  729                     #ifdef bit_led
+//  730                        LED_OFF;
+        CBI     0x12, 0x05
+//  731                     #endif  
+//  732     //              LED_OFF;
+//  733                     if (OS3_VARS.BitPosition++>127) OS3_VARS.BitPosition=0;
+??ISR_TIMER1_CAPT_58:
+        LDS     R16, (OS1_VARS + 8)
+        MOV     R17, R16
+        INC     R17
+        STS     (OS1_VARS + 8), R17
+        CPI     R16, 128
+        BRCC    $+2+2
+        RJMP    ??ISR_TIMER1_CAPT_1
+        RJMP    ??ISR_TIMER1_CAPT_56
+//  734                   }
+//  735                   else  Reset_OS3; //Do not detect OS3 error for 1st data pulse                        
+//  736                 }
+//  737               break;        
+//  738            }
+//  739          }                       
+//  740     }
+//  741     /*0.5 ms pulse handler (OS2 start bit or low width data pulse or OS3 preamble or OS3 high narrow bit*/
+//  742     else if InRange (period, us500, 250)      
+??ISR_TIMER1_CAPT_36:
+        CPI     R24, 227
+        LDI     R16, 4
+        CPC     R25, R16
+        BRCS    $+2+2
+        RJMP    ??ISR_TIMER1_CAPT_12
+        CPI     R24, 238
+        LDI     R16, 2
+        CPC     R25, R16
+        BRCC    $+2+2
+        RJMP    ??ISR_TIMER1_CAPT_12
+//  743     {
+//  744      if (STATE_DECODER==STATE_DECODER_IDLE)
+        LDS     R16, (OS1_VARS + 14)
+        TST     R16
+        BRNE    ??ISR_TIMER1_CAPT_59
+//  745      {
+//  746        // If OS3 decoder is in "iddle" state then interpretate 0.5ms high pulse as os3 preamble
+//  747        // Reset os1 and os2 decoders to iddle state
+//  748         Reset_OS1; Reset_OS2;
+        LDI     R30, LOW(OS1_VARS)
+        LDI     R31, (OS1_VARS) >> 8
+        STD     Z+2, R17
+        ST      Z, R17
+        STD     Z+1, R17
+        STD     Z+6, R17
+        STD     Z+4, R17
+        STD     Z+5, R17
+//  749         OS3_VARS.BitPosition++; // Increment Preamble bits counter                
+        LDD     R16, Z+8
+        INC     R16
+        STD     Z+8, R16
+//  750         if (OS3_VARS.BitPosition>=32) 
+        CPI     R16, 32
+        BRCC    $+2+2
+        RJMP    ??ISR_TIMER1_CAPT_1
+//  751         {
+//  752           #ifdef DEBUG_PRINT3
+//  753             print_fstr("\r\nS3");
+        LDI     R16, LOW((`?<Constant "\\r\\nD1S">` + 22))
+        LDI     R17, HIGH((`?<Constant "\\r\\nD1S">` + 22))
+        RCALL   print_fstr
+//  754           #endif  
+//  755           OS3_VARS.State=STATE_OS3_SYNC;
+        LDI     R16, 2
+        STS     (OS1_VARS + 10), R16
+//  756           OS3_VARS.BitPosition=0;
+        LDI     R16, 0
+        STS     (OS1_VARS + 8), R16
+//  757           STATE_DECODER=STATE_DECODER_OS3;
+        LDI     R16, 3
+        RJMP    ??ISR_TIMER1_CAPT_23
+//  758         }        
+//  759      }
+//  760      else if (STATE_DECODER==STATE_DECODER_OS2)
+??ISR_TIMER1_CAPT_59:
+        CPI     R16, 2
+        BRNE    ??ISR_TIMER1_CAPT_60
+//  761      {
+//  762       switch (OS2_VARS.State)
+        LDS     R16, (OS1_VARS + 6)
+        SUBI    R16, 2
+        BREQ    ??ISR_TIMER1_CAPT_61
+        DEC     R16
+        BREQ    ??ISR_TIMER1_CAPT_62
+        RJMP    ??ISR_TIMER1_CAPT_1
+//  763          {
+//  764            case STATE_OS2_SYNC:
+//  765              if ICP_IS_RISING
+??ISR_TIMER1_CAPT_61:
+        IN      R16, 0x2E
+        SBRS    R16, 6
+        RJMP    ??ISR_TIMER1_CAPT_1
+//  766              {
+//  767                OS2_VARS.State=STATE_OS2_DATA;
+        LDI     R16, 3
+        STS     (OS1_VARS + 6), R16
+//  768                OS2_VARS.LastBit=1;
+        LDI     R16, 1
+        STS     (OS1_VARS + 7), R16
+//  769                OS2_VARS.BitPosition=0;
+        STS     (OS1_VARS + 4), R17
+//  770                #ifdef DEBUG_PRINT2_1
+//  771                  print_fstr("\r\nD2");   
+        LDI     R16, LOW((`?<Constant "\\r\\nD1S">` + 27))
+        LDI     R17, HIGH((`?<Constant "\\r\\nD1S">` + 27))
+        RJMP    ??ISR_TIMER1_CAPT_32
+//  772                #endif                 
+//  773              }               
+//  774              break;  
+//  775            case STATE_OS2_DATA:
+//  776             if ICP_IS_FALLING
+??ISR_TIMER1_CAPT_62:
+        IN      R16, 0x2E
+        SBRC    R16, 6
+        RJMP    ??ISR_TIMER1_CAPT_63
+//  777             {
+//  778               // data high narrow
+//  779               if (OS2_VARS.LastBit==1)              
+        LDS     R16, (OS1_VARS + 7)
+        CPI     R16, 1
+        BREQ    $+2+2
+        RJMP    ??ISR_TIMER1_CAPT_1
+//  780               {
+//  781                 UREG BitPos=OS2_VARS.BitPosition;           
+        RJMP    ??ISR_TIMER1_CAPT_46
+//  782                 if (BitPos&0x01) ArrBitDefine(BitPos>>1, 1, Stream);
+//  783                 OS2_VARS.LastBit=1;
+//  784                 if (BitPos++>254) BitPos=0;
+//  785                 OS2_VARS.BitPosition=BitPos;
+//  786                 #ifdef bit_led
+//  787                    LED_ON;
+//  788                 #endif                
+//  789               }
+//  790               else {};   //              __no_operation(); // Do nothing - just wait next edge
+//  791             }
+//  792             else
+//  793             {
+//  794                if (OS2_VARS.LastBit==0)
+??ISR_TIMER1_CAPT_63:
+        LDS     R16, (OS1_VARS + 7)
+        TST     R16
+        BREQ    $+2+2
+        RJMP    ??ISR_TIMER1_CAPT_1
+//  795                 {                
+//  796                    UREG BitPos=OS2_VARS.BitPosition;           
+        RJMP    ??ISR_TIMER1_CAPT_49
+//  797                    if (BitPos&0x01) ArrBitDefine(BitPos>>1, 0, Stream);
+//  798    //              UART_TX('0');
+//  799                    OS2_VARS.LastBit=0;
+//  800                    if (BitPos++>254) BitPos=0;
+//  801                    OS2_VARS.BitPosition=BitPos;           
+//  802                    #ifdef bit_led
+//  803                      LED_OFF;
+//  804                    #endif  
+//  805                 }
+//  806                else {};
+//  807             }
+//  808             break;             
+//  809          }      
+//  810      }
+//  811      else if (STATE_DECODER==STATE_DECODER_OS3)
+??ISR_TIMER1_CAPT_60:
+        CPI     R16, 3
+        BREQ    $+2+2
+        RJMP    ??ISR_TIMER1_CAPT_1
+//  812       {
+//  813         switch (OS3_VARS.State)
+        LDS     R16, (OS1_VARS + 10)
+        SUBI    R16, 2
+        BREQ    ??ISR_TIMER1_CAPT_64
+        DEC     R16
+        BREQ    ??ISR_TIMER1_CAPT_65
+        RJMP    ??ISR_TIMER1_CAPT_1
+//  814          {
+//  815           case STATE_OS3_SYNC:            
+//  816             #ifdef  preamlbe_led 
+//  817               if ICP_IS_FALLING
+??ISR_TIMER1_CAPT_64:
+        IN      R16, 0x2E
+        SBRS    R16, 6
+        RJMP    ??ISR_TIMER1_CAPT_42
+//  818               {
+//  819                 LED_ON;
+//  820               } else LED_OFF;
+        RJMP    ??ISR_TIMER1_CAPT_43
+//  821             #endif
+//  822             break;          
+//  823           case STATE_OS3_DATA:
+//  824             if ICP_IS_FALLING
+??ISR_TIMER1_CAPT_65:
+        IN      R16, 0x2E
+        SBRC    R16, 6
+        RJMP    ??ISR_TIMER1_CAPT_66
+//  825             {
+//  826               // Else If OS3 decoder is in "data" state then interpretate 0.5ms high pulse as narrow data pulse
+//  827               if (OS3_VARS.LastBit==1) //_|-|_|-|_ (1,1)
+        LDS     R16, (OS1_VARS + 11)
+        CPI     R16, 1
+        BREQ    $+2+2
+        RJMP    ??ISR_TIMER1_CAPT_1
+//  828               {
+//  829                 ArrBitDefine(OS3_VARS.BitPosition, 1, Stream);
+        LDI     R26, LOW(OS1_VARS)
+        LDI     R27, (OS1_VARS) >> 8
+        LDS     R20, (OS1_VARS + 8)
+        MOV     R16, R20
+        LSR     R16
+        LSR     R16
+        LSR     R16
+        ADD     R26, R16
+        ADC     R27, R17
+        ADIW    R27:R26, 15
+        ANDI    R20, 0x07
+        LDI     R16, 1
+        RCALL   ?C_SHL_L01
+        LD      R17, X
+        OR      R17, R16
+        ST      X, R17
+//  830                 #ifdef bit_led
+//  831                    LED_ON;
+        SBI     0x12, 0x05
+//  832                 #endif  
+//  833   //            LED_ON;
+//  834                 OS3_VARS.LastBit=1;
+        LDI     R16, 1
+??ISR_TIMER1_CAPT_67:
+        STS     (OS1_VARS + 11), R16
+//  835                 if (OS3_VARS.BitPosition++>127) OS3_VARS.BitPosition=0; 
+        RJMP    ??ISR_TIMER1_CAPT_58
+//  836               }
+//  837               else {};//              __no_operation(); // Do nothing - just wait next edge
+//  838             }
+//  839             else
+//  840             { // OS3 low narrow            
+//  841               if (OS3_VARS.LastBit==0)
+??ISR_TIMER1_CAPT_66:
+        LDS     R16, (OS1_VARS + 11)
+        TST     R16
+        BREQ    $+2+2
+        RJMP    ??ISR_TIMER1_CAPT_7
+//  842               {
+//  843                 ArrBitDefine(OS3_VARS.BitPosition, 0, Stream);
+        LDI     R26, LOW(OS1_VARS)
+        LDI     R27, (OS1_VARS) >> 8
+        LDS     R20, (OS1_VARS + 8)
+        MOV     R16, R20
+        LSR     R16
+        LSR     R16
+        LSR     R16
+        ADD     R26, R16
+        ADC     R27, R17
+        ADIW    R27:R26, 15
+        ANDI    R20, 0x07
+        LDI     R16, 1
+        RCALL   ?C_SHL_L01
+        COM     R16
+        LD      R17, X
+        AND     R17, R16
+        ST      X, R17
+//  844                 #ifdef bit_led
+//  845                    LED_OFF;
+        CBI     0x12, 0x05
+//  846                 #endif            
+//  847      //          LED_OFF;
+//  848                 OS3_VARS.LastBit=0;
+        LDI     R16, 0
+        RJMP    ??ISR_TIMER1_CAPT_67
+//  849                 if (OS3_VARS.BitPosition++>127) OS3_VARS.BitPosition=0;
+//  850               }
+//  851               else __no_operation(); // Do nothing - just wait next edge        
+//  852             }
+//  853             break;                    
+//  854           }
+//  855         }                       
+//  856       }
+//  857     else // Pulse with incorrect latency
+//  858     {
+//  859       if (STATE_DECODER==STATE_DECODER_IDLE) {Stream_Error;}  // Stream error during OS3 preamble capturing
+??ISR_TIMER1_CAPT_12:
+        LDS     R16, (OS1_VARS + 14)
+        TST     R16
+        BRNE    $+2+2
+        RJMP    ??ISR_TIMER1_CAPT_9
+//  860       else if (STATE_DECODER==STATE_DECODER_OS1)
+        CPI     R16, 1
+        BREQ    $+2+2
+        RJMP    ??ISR_TIMER1_CAPT_68
+//  861       {
+//  862         switch (OS1_VARS.State)
+        LDS     R16, (OS1_VARS + 2)
+        SUBI    R16, 0
+        BRNE    $+2+2
+        RJMP    ??ISR_TIMER1_CAPT_3
+        SUBI    R16, 2
+        BRCS    ??ISR_TIMER1_CAPT_69
+        SUBI    R16, 3
+        BRCC    $+2+2
+        RJMP    ??ISR_TIMER1_CAPT_3
+        SUBI    R16, 0
+        BREQ    ??ISR_TIMER1_CAPT_70
+??ISR_TIMER1_CAPT_69:
+        RJMP    ??ISR_TIMER1_CAPT_1
+//  863         {
+//  864            case STATE_OS1_IDLE:
+//  865              Reset_OS1;
+//  866              break;
+//  867            case STATE_OS1_SYNC1:
+//  868             Reset_OS1;          
+//  869              break;   
+//  870            case STATE_OS1_SYNC2:
+//  871             Reset_OS1;                          
+//  872              break;            
+//  873            case STATE_OS1_SYNC3:
+//  874             Reset_OS1;                          
+//  875              break;            
+//  876            case STATE_OS1_DATA:
+//  877             Reset_OS1;         
+??ISR_TIMER1_CAPT_70:
+        STS     (OS1_VARS + 14), R17
+        STS     (OS1_VARS + 2), R17
+        STS     OS1_VARS, R17
+        STS     (OS1_VARS + 1), R17
+//  878             #ifdef DEBUG_PRINT1
+//  879               if ICP_IS_RISING
+        IN      R16, 0x2E
+        SBRS    R16, 6
+        RJMP    ??ISR_TIMER1_CAPT_71
+??ISR_TIMER1_CAPT_72:
+        SBIS    0x0B, 0x05
+        RJMP    ??ISR_TIMER1_CAPT_72
+        LDI     R16, 68
+        OUT     0x0C, R16
+//  880               {
+//  881                  UART_TX('D'); UART_TX('-'); print_hexword(newICP);
+??ISR_TIMER1_CAPT_73:
+        SBIS    0x0B, 0x05
+        RJMP    ??ISR_TIMER1_CAPT_73
+        LDI     R16, 45
+        OUT     0x0C, R16
+        MOVW    R27:R26, R29:R28
+        LDI     R20, 2
+        LDI     R21, 0
+        MOVW    R19:R18, R29:R28
+        MOV     R16, R25
+        RCALL   i2hex
+        RJMP    ??ISR_TIMER1_CAPT_74
+??ISR_TIMER1_CAPT_75:
+        SBIS    0x0B, 0x05
+        RJMP    ??ISR_TIMER1_CAPT_75
+        OUT     0x0C, R16
+??ISR_TIMER1_CAPT_74:
+        LD      R16, X+
+        TST     R16
+        BRNE    ??ISR_TIMER1_CAPT_75
+        MOVW    R27:R26, R29:R28
+        LDI     R20, 2
+        LDI     R21, 0
+        MOVW    R19:R18, R29:R28
+        MOV     R16, R24
+        RCALL   i2hex
+        RJMP    ??ISR_TIMER1_CAPT_76
+??ISR_TIMER1_CAPT_77:
+        SBIS    0x0B, 0x05
+        RJMP    ??ISR_TIMER1_CAPT_77
+        OUT     0x0C, R16
+??ISR_TIMER1_CAPT_76:
+        LD      R16, X+
+        TST     R16
+        BRNE    ??ISR_TIMER1_CAPT_77
+??ISR_TIMER1_CAPT_78:
+        SBIC    0x0B, 0x05
+        RJMP    ??ISR_TIMER1_CAPT_79
+        RJMP    ??ISR_TIMER1_CAPT_78
+//  882                // Stream error during OS2 data capturing
+//  883               }
+??ISR_TIMER1_CAPT_71:
+        SBIS    0x0B, 0x05
+        RJMP    ??ISR_TIMER1_CAPT_71
+        LDI     R16, 68
+        OUT     0x0C, R16
+//  884               else //ICP_IS_FALLING
+//  885               {
+//  886                  UART_TX('D'); UART_TX('+'); print_hexword(newICP);              
+??ISR_TIMER1_CAPT_80:
+        SBIS    0x0B, 0x05
+        RJMP    ??ISR_TIMER1_CAPT_80
+        LDI     R16, 43
+        OUT     0x0C, R16
+        MOVW    R27:R26, R29:R28
+        LDI     R20, 2
+        LDI     R21, 0
+        MOVW    R19:R18, R29:R28
+        MOV     R16, R25
+        RCALL   i2hex
+        RJMP    ??ISR_TIMER1_CAPT_81
+??ISR_TIMER1_CAPT_82:
+        SBIS    0x0B, 0x05
+        RJMP    ??ISR_TIMER1_CAPT_82
+        OUT     0x0C, R16
+??ISR_TIMER1_CAPT_81:
+        LD      R16, X+
+        TST     R16
+        BRNE    ??ISR_TIMER1_CAPT_82
+        MOVW    R27:R26, R29:R28
+        LDI     R20, 2
+        LDI     R21, 0
+        MOVW    R19:R18, R29:R28
+        MOV     R16, R24
+        RCALL   i2hex
+        RJMP    ??ISR_TIMER1_CAPT_83
+??ISR_TIMER1_CAPT_84:
+        SBIS    0x0B, 0x05
+        RJMP    ??ISR_TIMER1_CAPT_84
+        OUT     0x0C, R16
+??ISR_TIMER1_CAPT_83:
+        LD      R16, X+
+        TST     R16
+        BRNE    ??ISR_TIMER1_CAPT_84
+??ISR_TIMER1_CAPT_85:
+        SBIC    0x0B, 0x05
+        RJMP    ??ISR_TIMER1_CAPT_79
+        RJMP    ??ISR_TIMER1_CAPT_85
+//  887               }
+//  888             #endif               
+//  889              break;                         
+//  890         }
+//  891       }
+//  892       else if (STATE_DECODER==STATE_DECODER_OS2)
+??ISR_TIMER1_CAPT_68:
+        CPI     R16, 2
+        BREQ    $+2+2
+        RJMP    ??ISR_TIMER1_CAPT_86
+//  893       {
+//  894         switch (OS2_VARS.State)
+        LDS     R16, (OS1_VARS + 6)
+        SUBI    R16, 0
+        BRNE    $+2+2
+        RJMP    ??ISR_TIMER1_CAPT_45
+        SUBI    R16, 2
+        BRNE    $+2+2
+        RJMP    ??ISR_TIMER1_CAPT_45
+        DEC     R16
+        BREQ    $+2+2
+        RJMP    ??ISR_TIMER1_CAPT_1
+//  895         {
+//  896           case STATE_OS2_IDLE:
+//  897             Reset_OS2;             // Stream error during OS2 preamble capturing
+//  898             break;
+//  899           case STATE_OS2_DATA:
+//  900             /*
+//  901             if ((ICP_IS_RISING)||(!(InRange (period, 150, 70))))
+//  902             {
+//  903               Reset_OS2;
+//  904               #ifdef DEBUG_PRINT2_1
+//  905               if ICP_IS_RISING
+//  906               {
+//  907                  UART_TX('D'); UART_TX('-'); print_hexword(newICP);
+//  908                // Stream error during OS2 data capturing
+//  909               }
+//  910               else //ICP_IS_FALLING
+//  911               {
+//  912                  UART_TX('D'); UART_TX('+'); print_hexword(newICP);              
+//  913               }
+//  914               #endif   
+//  915             }
+//  916             else if ((ICP_IS_FALLING) && (InRange (period, 150, 70)))
+//  917             {
+//  918               #ifdef DEBUG_PRINT2_1
+//  919                 print_fstr("\r\nA2");
+//  920               #endif     
+//  921             }
+//  922             */
+//  923             if (OS2_VARS.BitPosition>=48)
+        LDS     R16, (OS1_VARS + 4)
+        CPI     R16, 48
+        BRCS    ??ISR_TIMER1_CAPT_87
+//  924             {
+//  925               #ifdef DEBUG_PRINT2_1
+//  926                 print_fstr("\r\nA2");
+        LDI     R16, LOW((`?<Constant "\\r\\nD1S">` + 32))
+        LDI     R17, HIGH((`?<Constant "\\r\\nD1S">` + 32))
+        RJMP    ??ISR_TIMER1_CAPT_32
+//  927               #endif     
+//  928             }
+//  929             else
+//  930             {
+//  931               Reset_OS2;
+??ISR_TIMER1_CAPT_87:
+        STS     (OS1_VARS + 14), R17
+        STS     (OS1_VARS + 6), R17
+        STS     (OS1_VARS + 4), R17
+        STS     (OS1_VARS + 5), R17
+//  932               #ifdef DEBUG_PRINT2_1
+//  933               if ICP_IS_RISING
+        IN      R16, 0x2E
+        SBRS    R16, 6
+        RJMP    ??ISR_TIMER1_CAPT_88
+??ISR_TIMER1_CAPT_89:
+        SBIS    0x0B, 0x05
+        RJMP    ??ISR_TIMER1_CAPT_89
+        LDI     R16, 68
+        OUT     0x0C, R16
+//  934               {
+//  935                  UART_TX('D'); UART_TX('-'); print_hexword(newICP);
+??ISR_TIMER1_CAPT_90:
+        SBIS    0x0B, 0x05
+        RJMP    ??ISR_TIMER1_CAPT_90
+        LDI     R16, 45
+        OUT     0x0C, R16
+        MOVW    R27:R26, R29:R28
+        LDI     R20, 2
+        LDI     R21, 0
+        MOVW    R19:R18, R29:R28
+        MOV     R16, R25
+        RCALL   i2hex
+        RJMP    ??ISR_TIMER1_CAPT_91
+??ISR_TIMER1_CAPT_92:
+        SBIS    0x0B, 0x05
+        RJMP    ??ISR_TIMER1_CAPT_92
+        OUT     0x0C, R16
+??ISR_TIMER1_CAPT_91:
+        LD      R16, X+
+        TST     R16
+        BRNE    ??ISR_TIMER1_CAPT_92
+        MOVW    R27:R26, R29:R28
+        LDI     R20, 2
+        LDI     R21, 0
+        MOVW    R19:R18, R29:R28
+        MOV     R16, R24
+        RCALL   i2hex
+        RJMP    ??ISR_TIMER1_CAPT_93
+??ISR_TIMER1_CAPT_94:
+        SBIS    0x0B, 0x05
+        RJMP    ??ISR_TIMER1_CAPT_94
+        OUT     0x0C, R16
+??ISR_TIMER1_CAPT_93:
+        LD      R16, X+
+        TST     R16
+        BRNE    ??ISR_TIMER1_CAPT_94
+??ISR_TIMER1_CAPT_95:
+        SBIC    0x0B, 0x05
+        RJMP    ??ISR_TIMER1_CAPT_79
+        RJMP    ??ISR_TIMER1_CAPT_95
+//  936                // Stream error during OS2 data capturing
+//  937               }
+??ISR_TIMER1_CAPT_88:
+        SBIS    0x0B, 0x05
+        RJMP    ??ISR_TIMER1_CAPT_88
+        LDI     R16, 68
+        OUT     0x0C, R16
+//  938               else //ICP_IS_FALLING
+//  939               {
+//  940                  UART_TX('D'); UART_TX('+'); print_hexword(newICP);              
+??ISR_TIMER1_CAPT_96:
+        SBIS    0x0B, 0x05
+        RJMP    ??ISR_TIMER1_CAPT_96
+        LDI     R16, 43
+        OUT     0x0C, R16
+        MOVW    R27:R26, R29:R28
+        LDI     R20, 2
+        LDI     R21, 0
+        MOVW    R19:R18, R29:R28
+        MOV     R16, R25
+        RCALL   i2hex
+        RJMP    ??ISR_TIMER1_CAPT_97
+??ISR_TIMER1_CAPT_98:
+        SBIS    0x0B, 0x05
+        RJMP    ??ISR_TIMER1_CAPT_98
+        OUT     0x0C, R16
+??ISR_TIMER1_CAPT_97:
+        LD      R16, X+
+        TST     R16
+        BRNE    ??ISR_TIMER1_CAPT_98
+        MOVW    R27:R26, R29:R28
+        LDI     R20, 2
+        LDI     R21, 0
+        MOVW    R19:R18, R29:R28
+        MOV     R16, R24
+        RCALL   i2hex
+        RJMP    ??ISR_TIMER1_CAPT_99
+??ISR_TIMER1_CAPT_100:
+        SBIS    0x0B, 0x05
+        RJMP    ??ISR_TIMER1_CAPT_100
+        OUT     0x0C, R16
+??ISR_TIMER1_CAPT_99:
+        LD      R16, X+
+        TST     R16
+        BRNE    ??ISR_TIMER1_CAPT_100
+??ISR_TIMER1_CAPT_101:
+        SBIC    0x0B, 0x05
+        RJMP    ??ISR_TIMER1_CAPT_79
+        RJMP    ??ISR_TIMER1_CAPT_101
+//  941               }
+//  942               #endif                
+//  943             }
+//  944             break;
+//  945           case STATE_OS2_SYNC:
+//  946             Reset_OS2;
+//  947             break;
+//  948        }      
+//  949       }
+//  950       else if (STATE_DECODER==STATE_DECODER_OS3)
+??ISR_TIMER1_CAPT_86:
+        CPI     R16, 3
+        BREQ    $+2+2
+        RJMP    ??ISR_TIMER1_CAPT_1
+//  951       {
+//  952          switch (OS3_VARS.State)
+        LDS     R16, (OS1_VARS + 10)
+        SUBI    R16, 2
+        BRNE    $+2+2
+        RJMP    ??ISR_TIMER1_CAPT_102
+        DEC     R16
+        BREQ    $+2+2
+        RJMP    ??ISR_TIMER1_CAPT_1
+//  953           {
+//  954             case STATE_OS3_DATA:
+//  955               
+//  956               if ((ICP_IS_RISING)||(!(InRange (period, 175, 50))))
+        IN      R16, 0x2E
+        SBRC    R16, 6
+        RJMP    ??ISR_TIMER1_CAPT_103
+        CPI     R24, 226
+        CPC     R25, R17
+        BRCC    ??ISR_TIMER1_CAPT_103
+        CPI     R24, 125
+        CPC     R25, R17
+        BRCS    $+2+2
+        RJMP    ??ISR_TIMER1_CAPT_104
+//  957               {
+//  958                 Reset_OS3;
+??ISR_TIMER1_CAPT_103:
+        STS     (OS1_VARS + 14), R17
+        STS     (OS1_VARS + 10), R17
+        STS     (OS1_VARS + 8), R17
+        STS     (OS1_VARS + 9), R17
+//  959                 #ifdef DEBUG_PRINT3
+//  960                 if ICP_IS_RISING
+        IN      R16, 0x2E
+        SBRS    R16, 6
+        RJMP    ??ISR_TIMER1_CAPT_105
+??ISR_TIMER1_CAPT_106:
+        SBIS    0x0B, 0x05
+        RJMP    ??ISR_TIMER1_CAPT_106
+        LDI     R16, 68
+        OUT     0x0C, R16
+//  961                 {
+//  962                    UART_TX('D'); UART_TX('-'); print_hexword(newICP);
+??ISR_TIMER1_CAPT_107:
+        SBIS    0x0B, 0x05
+        RJMP    ??ISR_TIMER1_CAPT_107
+        LDI     R16, 45
+        OUT     0x0C, R16
+        MOVW    R27:R26, R29:R28
+        LDI     R20, 2
+        LDI     R21, 0
+        MOVW    R19:R18, R29:R28
+        MOV     R16, R25
+        RCALL   i2hex
+        RJMP    ??ISR_TIMER1_CAPT_108
+??ISR_TIMER1_CAPT_109:
+        SBIS    0x0B, 0x05
+        RJMP    ??ISR_TIMER1_CAPT_109
+        OUT     0x0C, R16
+??ISR_TIMER1_CAPT_108:
+        LD      R16, X+
+        TST     R16
+        BRNE    ??ISR_TIMER1_CAPT_109
+        MOVW    R27:R26, R29:R28
+        LDI     R20, 2
+        LDI     R21, 0
+        MOVW    R19:R18, R29:R28
+        MOV     R16, R24
+        RCALL   i2hex
+        RJMP    ??ISR_TIMER1_CAPT_110
+??ISR_TIMER1_CAPT_111:
+        SBIS    0x0B, 0x05
+        RJMP    ??ISR_TIMER1_CAPT_111
+        OUT     0x0C, R16
+??ISR_TIMER1_CAPT_110:
+        LD      R16, X+
+        TST     R16
+        BRNE    ??ISR_TIMER1_CAPT_111
+??ISR_TIMER1_CAPT_112:
+        SBIC    0x0B, 0x05
+        RJMP    ??ISR_TIMER1_CAPT_79
+        RJMP    ??ISR_TIMER1_CAPT_112
+//  963                 }
+??ISR_TIMER1_CAPT_105:
+        SBIS    0x0B, 0x05
+        RJMP    ??ISR_TIMER1_CAPT_105
+        LDI     R16, 68
+        OUT     0x0C, R16
+//  964                 else
+//  965                 {
+//  966                    UART_TX('D'); UART_TX('+'); print_hexword(newICP);                
+??ISR_TIMER1_CAPT_113:
+        SBIS    0x0B, 0x05
+        RJMP    ??ISR_TIMER1_CAPT_113
+        LDI     R16, 43
+        OUT     0x0C, R16
+        MOVW    R27:R26, R29:R28
+        LDI     R20, 2
+        LDI     R21, 0
+        MOVW    R19:R18, R29:R28
+        MOV     R16, R25
+        RCALL   i2hex
+        RJMP    ??ISR_TIMER1_CAPT_114
+??ISR_TIMER1_CAPT_115:
+        SBIS    0x0B, 0x05
+        RJMP    ??ISR_TIMER1_CAPT_115
+        OUT     0x0C, R16
+??ISR_TIMER1_CAPT_114:
+        LD      R16, X+
+        TST     R16
+        BRNE    ??ISR_TIMER1_CAPT_115
+        MOVW    R27:R26, R29:R28
+        LDI     R20, 2
+        LDI     R21, 0
+        MOVW    R19:R18, R29:R28
+        MOV     R16, R24
+        RCALL   i2hex
+        RJMP    ??ISR_TIMER1_CAPT_116
+??ISR_TIMER1_CAPT_117:
+        SBIS    0x0B, 0x05
+        RJMP    ??ISR_TIMER1_CAPT_117
+        OUT     0x0C, R16
+??ISR_TIMER1_CAPT_116:
+        LD      R16, X+
+        TST     R16
+        BRNE    ??ISR_TIMER1_CAPT_117
+??ISR_TIMER1_CAPT_118:
+        SBIS    0x0B, 0x05
+        RJMP    ??ISR_TIMER1_CAPT_118
+??ISR_TIMER1_CAPT_79:
+        LDI     R16, 44
+        OUT     0x0C, R16
+//  967                 }                   
+//  968                 #endif
+//  969               }
+        RJMP    ??ISR_TIMER1_CAPT_1
+//  970               else if ((ICP_IS_FALLING) && (InRange (period, 175, 50)))
+??ISR_TIMER1_CAPT_104:
+        IN      R16, 0x2E
+        SBRC    R16, 6
+        RJMP    ??ISR_TIMER1_CAPT_1
+//  971               {
+//  972                 print_fstr("\r\nA3");
+        LDI     R16, LOW((`?<Constant "\\r\\nD1S">` + 37))
+        LDI     R17, HIGH((`?<Constant "\\r\\nD1S">` + 37))
+        RJMP    ??ISR_TIMER1_CAPT_32
+//  973               }              
+//  974               break;
+//  975             case STATE_OS3_SYNC:
+//  976               Reset_OS3;
+??ISR_TIMER1_CAPT_102:
+        STS     (OS1_VARS + 14), R17
+        STS     (OS1_VARS + 10), R17
+        STS     (OS1_VARS + 8), R17
+        STS     (OS1_VARS + 9), R17
+//  977               break;
+//  978           }
+//  979       }                 
+//  980     }           
+//  981    if (ICP_IS_RISING) SET_ICP_FALLING else SET_ICP_RISING;  
+??ISR_TIMER1_CAPT_1:
+        IN      R16, 0x2E
+        SBRS    R16, 6
+        RJMP    ??ISR_TIMER1_CAPT_119
+        IN      R16, 0x2E
+        ANDI    R16, 0xBF
+        RJMP    ??ISR_TIMER1_CAPT_120
+??ISR_TIMER1_CAPT_119:
+        IN      R16, 0x2E
+        ORI     R16, 0x40
+??ISR_TIMER1_CAPT_120:
+        OUT     0x2E, R16
+//  982 };
+        ADIW    R29:R28, 5
+        CFI CFA_Y Y+19
+        OUT     0x3F, R4
+        LD      R16, Y+
+        CFI R16 SameValue
+        CFI CFA_Y Y+18
+        LD      R17, Y+
+        CFI R17 SameValue
+        CFI CFA_Y Y+17
+        LD      R18, Y+
+        CFI R18 SameValue
+        CFI CFA_Y Y+16
+        LD      R19, Y+
+        CFI R19 SameValue
+        CFI CFA_Y Y+15
+        LD      R20, Y+
+        CFI R20 SameValue
+        CFI CFA_Y Y+14
+        LD      R21, Y+
+        CFI R21 SameValue
+        CFI CFA_Y Y+13
+        LD      R22, Y+
+        CFI R22 SameValue
+        CFI CFA_Y Y+12
+        LD      R23, Y+
+        CFI R23 SameValue
+        CFI CFA_Y Y+11
+        LD      R0, Y+
+        CFI R0 SameValue
+        CFI CFA_Y Y+10
+        LD      R1, Y+
+        CFI R1 SameValue
+        CFI CFA_Y Y+9
+        LD      R2, Y+
+        CFI R2 SameValue
+        CFI CFA_Y Y+8
+        LD      R3, Y+
+        CFI R3 SameValue
+        CFI CFA_Y Y+7
+        LD      R30, Y+
+        CFI R30 SameValue
+        CFI CFA_Y Y+6
+        LD      R31, Y+
+        CFI R31 SameValue
+        CFI CFA_Y Y+5
+        LD      R24, Y+
+        CFI R24 SameValue
+        CFI CFA_Y Y+4
+        LD      R25, Y+
+        CFI R25 SameValue
+        CFI CFA_Y Y+3
+        LD      R26, Y+
+        CFI R26 SameValue
+        CFI CFA_Y Y+2
+        LD      R27, Y+
+        CFI R27 SameValue
+        CFI CFA_Y Y+1
+        LD      R4, Y+
+        CFI R4 SameValue
+        CFI CFA_Y Y+0
+        RETI
+        CFI EndBlock cfiBlock9
+        REQUIRE _A_PORTD
+        REQUIRE _A_ICR1
+        REQUIRE _A_TCNT1
+        REQUIRE _A_TCCR1B
+        REQUIRE _A_UCSRA
+        REQUIRE _A_UDR
+//  983 
+//  984 //Let's start decoding
+//  985 
+
+        RSEG CODE:CODE:NOROOT(1)
+//  986 void main( void )
+main:
+        CFI Block cfiBlock10 Using cfiCommon0
+        CFI Function main
+//  987 {
+//  988 //  UREG i,j=0;
+//  989   cbi (LEDPORT, LED); 
+        FUNCALL main, uart_init
+        LOCFRAME CSTACK, 0, STACK
+        LOCFRAME RSTACK, 2, STACK
+        ARGFRAME RSTACK, 0, STACK
+        FUNCALL main, print_fstr
+        LOCFRAME CSTACK, 0, STACK
+        LOCFRAME RSTACK, 2, STACK
+        ARGFRAME RSTACK, 0, STACK
+        CBI     0x12, 0x05
+//  990   sbi (LEDDDR, LED);
+        SBI     0x11, 0x05
+//  991   LED_ON;
+        SBI     0x12, 0x05
+//  992   _delay_ms(1000);
+        LDI     R16, 255
+        LDI     R17, 211
+        LDI     R18, 48
+        SUBI    R16, 1
+        SBCI    R17, 0
+        SBCI    R18, 0
+        BRNE    $-6
+        RJMP    $+2
+        NOP
+//  993   LED_OFF;
+        CBI     0x12, 0x05
+//  994   uart_init();
+        RCALL   uart_init
+//  995   print_fstr("\r\nOregon Scientific Receiver \r\nFor v1.0, v2.1, v3.0 protocols\r\nBy A.Yerezeyev, (c)2010\r\n");
+        LDI     R16, LOW(`?<Constant "\\r\\nOregon Scientific R...">`)
+        LDI     R17, (`?<Constant "\\r\\nOregon Scientific R...">`) >> 8
+        RCALL   print_fstr
+//  996   _delay_ms(10);
+        LDI     R16, 63
+        LDI     R17, 156
+        SUBI    R16, 1
+        SBCI    R17, 0
+        BRNE    $-4
+        RJMP    $+2
+        NOP
+//  997   ICP_VARS.oldICP=0;
+        LDI     R30, LOW(OS1_VARS)
+        LDI     R31, (OS1_VARS) >> 8
+        LDI     R16, 0
+        STD     Z+12, R16
+        STD     Z+13, R16
+//  998   Reset_OS1; Reset_OS2; Reset_OS3; STATE_DECODER=STATE_DECODER_IDLE;
+        STD     Z+2, R16
+        ST      Z, R16
+        STD     Z+1, R16
+        STD     Z+6, R16
+        STD     Z+4, R16
+        STD     Z+5, R16
+        STD     Z+10, R16
+        STD     Z+8, R16
+        STD     Z+9, R16
+        STD     Z+14, R16
+//  999   __disable_interrupt();
+        CLI
+// 1000   OCR1A=16384; // Timeout for bitstream
+        LDI     R17, 64
+        OUT     0x2B, R17
+        OUT     0x2A, R16
+// 1001   //Timer/Counter1, Input Capture Interrupt Enable
+// 1002   TIMSK|=(1<<TICIE1)|(1<<OCIE1A); 
+        IN      R16, 0x39
+        ORI     R16, 0x30
+        OUT     0x39, R16
+// 1003   // start Timer1 at CLK/8 with input capture negative mode and input filter enabled
+// 1004   TCCR1B=(1<<CS11)|(1<<ICNC1);
+        LDI     R16, 130
+        OUT     0x2E, R16
+// 1005   TIFR=(1<<ICF1)|(1<<OCF1A);
+        LDI     R16, 48
+        OUT     0x38, R16
+// 1006   __enable_interrupt();
+        SEI
+// 1007   while (1) nop();
+??main_0:
+        NOP
+        RJMP    ??main_0
+        CFI EndBlock cfiBlock10
+        REQUIRE _A_DDRD
+        REQUIRE _A_PORTD
+        REQUIRE _A_OCR1A
+        REQUIRE _A_TCCR1B
+        REQUIRE _A_TIFR
+        REQUIRE _A_TIMSK
+// 1008 };
+
+        ASEGN ABSOLUTE:DATA:NOROOT,01cH
+__?EECR:
+
+        ASEGN ABSOLUTE:DATA:NOROOT,01dH
+__?EEDR:
+
+        ASEGN ABSOLUTE:DATA:NOROOT,01eH
+__?EEARL:
+
+        ASEGN ABSOLUTE:DATA:NOROOT,01fH
+__?EEARH:
+
+        COMMON INTVEC:CODE:ROOT(1)
+        ORG 10
+`??ISR_TIMER1_CAPT??INTVEC 10`:
+        RJMP    ISR_TIMER1_CAPT
+
+        COMMON INTVEC:CODE:ROOT(1)
+        ORG 12
+`??TIMER1_COMPA??INTVEC 12`:
+        RJMP    TIMER1_COMPA
+
+        RSEG INITTAB:CODE:NOROOT(0)
+`?<Segment init: NEAR_Z>`:
+        DC16    SFE(NEAR_Z) - SFB(NEAR_Z)
+        DC16    SFB(NEAR_Z)
+        DC16    0
+        REQUIRE ?need_segment_init
+
+        RSEG NEAR_F:CODE:NOROOT(0)
+`?<Constant "\\r\\nE1">`:
+        DC8 "\015\012E1"
+        DC8 "\015\012OS1.0, "
+        DC8 "\015\012E2"
+        DC8 "\015\012OS2.1, "
+        DC8 "\015\012E3"
+        DC8 "\015\012OS3.0, "
+
+        RSEG NEAR_F:CODE:NOROOT(0)
+`?<Constant "\\r\\nD1S">`:
+        DC8 "\015\012D1S"
+        DC8 "\015\012D1L"
+        DC8 "\015\012S2"
+        DC8 "\015\012D3"
+        DC8 "\015\012S3"
+        DC8 "\015\012D2"
+        DC8 "\015\012A2"
+        DC8 "\015\012A3"
+
+        RSEG NEAR_F:CODE:NOROOT(0)
+`?<Constant "\\r\\nOregon Scientific R...">`:
+        DC8 0DH, 0AH, 4FH, 72H, 65H, 67H, 6FH, 6EH
+        DC8 20H, 53H, 63H, 69H, 65H, 6EH, 74H, 69H
+        DC8 66H, 69H, 63H, 20H, 52H, 65H, 63H, 65H
+        DC8 69H, 76H, 65H, 72H, 20H, 0DH, 0AH, 46H
+        DC8 6FH, 72H, 20H, 76H, 31H, 2EH, 30H, 2CH
+        DC8 20H, 76H, 32H, 2EH, 31H, 2CH, 20H, 76H
+        DC8 33H, 2EH, 30H, 20H, 70H, 72H, 6FH, 74H
+        DC8 6FH, 63H, 6FH, 6CH, 73H, 0DH, 0AH, 42H
+        DC8 79H, 20H, 41H, 2EH, 59H, 65H, 72H, 65H
+        DC8 7AH, 65H, 79H, 65H, 76H, 2CH, 20H, 28H
+        DC8 63H, 29H, 32H, 30H, 31H, 30H, 0DH, 0AH
+        DC8 0
+
+        END
+// 
+//    16 bytes in segment ABSOLUTE
+// 3 398 bytes in segment CODE
+//     6 bytes in segment INITTAB
+//     4 bytes in segment INTVEC
+//   176 bytes in segment NEAR_F
+//    79 bytes in segment NEAR_N
+//     1 byte  in segment NEAR_Z
+// 
+// 3 574 bytes of CODE memory (+ 10 bytes shared)
+//    80 bytes of DATA memory (+ 16 bytes shared)
+//
+//Errors: none
+//Warnings: none
